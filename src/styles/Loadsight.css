@@ -1,0 +1,641 @@
+:root{
+  --ls-bg1:#070b19;
+  --ls-bg2:#0b1640;
+  --ls-cyan:#4fc8ff;
+  --ls-orange:#ff7a4e;
+  --ls-violet:#b26eff;
+  --ls-text:#eaf2ff;
+  --ls-muted: rgba(234,242,255,.74);
+  --ls-card: rgba(255,255,255,.06);
+  --ls-stroke: rgba(255,255,255,.14);
+}
+
+.lsPage{
+  background:
+    radial-gradient(1000px 520px at 15% 10%, rgba(79,200,255,.16), transparent 60%),
+    radial-gradient(900px 520px at 90% 25%, rgba(255,122,78,.14), transparent 55%),
+    linear-gradient(180deg, var(--ls-bg1), var(--ls-bg2));
+  color: var(--ls-text);
+}
+
+.lsContainer{ width: min(1180px, 92%); margin: 0 auto; }
+
+/* reveal */
+.lsReveal{ opacity:0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+.lsReveal.isVisible{ opacity:1; transform:none; }
+
+/* type */
+.lsH1{ font-size: clamp(34px, 3.2vw, 56px); line-height: 1.05; margin: 12px 0 14px; letter-spacing:-0.02em; }
+.lsH2{ font-size: clamp(24px, 2.2vw, 36px); margin: 0 0 10px; letter-spacing:-0.02em; }
+.lsH3{ font-size: 18px; margin: 10px 0 8px; }
+.lsLead{ color: var(--ls-muted); line-height: 1.75; font-size: 15px; margin: 0 0 16px; }
+.lsSub{ color: var(--ls-muted); line-height: 1.75; font-size: 14.5px; margin: 0; }
+.lsP{ color: var(--ls-muted); line-height: 1.75; font-size: 14px; margin: 0; }
+
+/* hero */
+.lsHero{ position: relative; padding: 120px 0 70px; overflow: hidden; }
+.lsHero__bg{
+  position:absolute; inset:-180px -120px -220px -120px;
+  background:
+    radial-gradient(900px 520px at 12% 8%, rgba(79,200,255,.20), transparent 60%),
+    radial-gradient(1000px 600px at 88% 26%, rgba(255,122,78,.17), transparent 55%),
+    radial-gradient(900px 600px at 60% 92%, rgba(178,110,255,.16), transparent 60%);
+  filter: blur(12px);
+  pointer-events:none;
+}
+.lsHero__inner{ display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 44px; align-items: center; }
+
+.lsKicker{
+  display:inline-flex; align-items:center; gap:10px;
+  font-weight: 800; letter-spacing:.08em; text-transform: uppercase;
+  font-size: 12px; color: rgba(234,242,255,.82);
+}
+.lsDot{
+  width: 10px; height: 10px; border-radius: 999px;
+  background: linear-gradient(135deg, var(--ls-cyan), var(--ls-violet));
+  box-shadow: 0 0 0 6px rgba(79,200,255,.12);
+}
+
+.lsHero__badges{ display:flex; flex-wrap:wrap; gap:10px; margin: 10px 0 18px; }
+.lsBadge{
+  display:inline-flex; align-items:center; gap:8px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--ls-stroke);
+  background: rgba(255,255,255,.05);
+  color: rgba(234,242,255,.86);
+  font-size: 13px;
+}
+.lsHero__actions{ display:flex; gap:12px; flex-wrap:wrap; }
+
+.lsBtn{
+  display:inline-flex; align-items:center; gap:10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-weight: 800;
+  text-decoration:none;
+  border: 1px solid transparent;
+  transition: transform .12s ease, filter .25s ease, background .25s ease, border-color .25s ease;
+}
+.lsBtn--primary{
+  background: linear-gradient(135deg, rgba(79,200,255,.95), rgba(178,110,255,.85));
+  color: #071023;
+  box-shadow: 0 18px 60px rgba(79,200,255,.18);
+}
+.lsBtn--ghost{
+  background: rgba(255,255,255,.06);
+  color: rgba(234,242,255,.92);
+  border-color: rgba(255,255,255,.14);
+}
+@media (hover:hover) and (pointer:fine){
+  .lsBtn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+}
+
+/* hero media */
+.lsHeroCard{
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 22px;
+  overflow:hidden;
+  box-shadow: 0 28px 80px rgba(0,0,0,.40);
+}
+.lsHeroCard img{ width:100%; height: 360px; object-fit: cover; display:block; }
+.lsHeroCard__cap{
+  display:flex; align-items:center; gap:10px;
+  padding: 14px 16px;
+  color: rgba(234,242,255,.86);
+  background: rgba(0,0,0,.24);
+  border-top: 1px solid rgba(255,255,255,.10);
+  font-size: 13px;
+}
+
+/* sections */
+.lsSection{ padding: 74px 0; }
+.lsSection--alt{
+  background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+  border-top: 1px solid rgba(255,255,255,.06);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.lsSection__head{ max-width: 820px; margin-bottom: 22px; }
+
+/* grids */
+.lsGrid4{ display:grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.lsGrid3{ display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+
+.lsCard{
+  background: var(--ls-card);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 18px;
+  padding: 16px;
+  position: relative;
+  overflow:hidden;
+}
+.lsCard::before{
+  content:"";
+  position:absolute; inset:-2px;
+  background:
+    radial-gradient(600px 240px at 20% 0%, rgba(79,200,255,.16), transparent 60%),
+    radial-gradient(520px 260px at 90% 50%, rgba(255,122,78,.10), transparent 60%);
+  opacity:.9;
+  pointer-events:none;
+}
+.lsCard > *{ position:relative; z-index:1; }
+
+.lsCard__icon{
+  width: 44px; height: 44px; border-radius: 14px;
+  display:grid; place-items:center;
+  background: rgba(0,0,0,.22);
+  border: 1px solid rgba(255,255,255,.14);
+  color: var(--ls-cyan);
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+@media (hover:hover) and (pointer:fine){
+  .lsCard{ transition: transform .32s ease, border-color .32s ease; }
+  .lsCard:hover{ transform: translateY(-6px); border-color: rgba(255,255,255,.20); }
+}
+
+/* split + panel */
+.lsSplit{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 18px; align-items:start; }
+.lsAgentList{ margin-top: 18px; display:flex; flex-direction:column; gap: 12px; }
+.lsAgent{
+  display:flex; gap:12px; align-items:flex-start;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.10);
+}
+.lsAgent__icon{
+  width: 44px; height: 44px; border-radius: 14px;
+  display:grid; place-items:center;
+  background: rgba(0,0,0,.22);
+  border: 1px solid rgba(255,255,255,.14);
+  color: rgba(234,242,255,.92);
+}
+.lsAgent__name{ font-weight: 900; margin-bottom: 4px; }
+.lsAgent__text{ color: rgba(234,242,255,.74); font-size: 13.5px; line-height: 1.6; }
+
+.lsPanel{
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(0,0,0,.28), rgba(255,255,255,.04));
+  border: 1px solid rgba(255,255,255,.12);
+  padding: 18px;
+  box-shadow: 0 24px 70px rgba(0,0,0,.35);
+}
+.lsPanel__title{ display:flex; align-items:center; gap:10px; font-weight: 900; margin-bottom: 10px; }
+.lsSteps{ margin: 0; padding-left: 18px; color: rgba(234,242,255,.78); line-height: 1.7; font-size: 13.5px; }
+.lsPanel__note{ margin-top: 12px; color: rgba(234,242,255,.78); font-size: 13.5px; }
+
+/* industries */
+.lsIndustryGrid{ display:flex; flex-direction:column; gap: 14px; }
+.lsIndustry{
+  display:grid; grid-template-columns: 1.2fr .8fr; gap: 18px;
+  align-items:center;
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.10);
+  overflow:hidden;
+  position: relative;
+}
+.lsIndustry::after{
+  content:"";
+  position:absolute; inset:-2px;
+  background:
+    radial-gradient(700px 240px at 15% 0%, rgba(79,200,255,.16), transparent 60%),
+    radial-gradient(600px 240px at 95% 60%, rgba(178,110,255,.12), transparent 60%);
+  pointer-events:none;
+  opacity: .95;
+}
+.lsIndustry > *{ position:relative; z-index:1; }
+
+.lsIndustry__tag{
+  display:inline-flex; align-items:center; gap:10px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.18);
+  color: rgba(234,242,255,.84);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 10px;
+}
+.lsBullets{ margin: 12px 0 0; padding-left: 0; list-style:none; display:flex; flex-direction:column; gap: 8px; }
+.lsBullets li{ display:flex; align-items:center; gap:10px; color: rgba(234,242,255,.78); font-size: 13.5px; }
+.lsBullets svg{ color: var(--ls-cyan); }
+
+.lsImgFrame{
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.18);
+  padding: 10px;
+  box-shadow: 0 22px 70px rgba(0,0,0,.35);
+}
+.lsImgFrame img{ width:100%; height: 220px; object-fit: cover; border-radius: 14px; display:block; }
+
+@media (hover:hover) and (pointer:fine){
+  .lsIndustry{ transition: transform .35s ease, border-color .35s ease; }
+  .lsIndustry:hover{ transform: translateY(-6px); border-color: rgba(255,255,255,.18); }
+  .lsImgFrame img{ transition: transform .35s ease; }
+  .lsIndustry:hover .lsImgFrame img{ transform: scale(1.05); }
+}
+
+/* integrations mini cards */
+.lsMini{ border-radius: 18px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.10); padding: 16px; }
+.lsMini__icon{ width: 40px; height: 40px; border-radius: 14px; display:grid; place-items:center; background: rgba(0,0,0,.22); border: 1px solid rgba(255,255,255,.14); color: var(--ls-cyan); margin-bottom: 10px; }
+.lsMini__title{ font-weight: 900; margin-bottom: 6px; }
+.lsMini__text{ color: rgba(234,242,255,.74); font-size: 13.5px; line-height: 1.6; }
+
+/* cta */
+.lsCta{
+  border-radius: 22px;
+  padding: 22px;
+  border: 1px solid rgba(255,255,255,.12);
+  background:
+    radial-gradient(900px 380px at 15% 0%, rgba(79,200,255,.14), transparent 60%),
+    radial-gradient(900px 420px at 90% 60%, rgba(255,122,78,.10), transparent 60%),
+    rgba(255,255,255,.04);
+}
+
+/* responsive */
+@media (max-width: 980px){
+  .lsHero{ padding: 98px 0 52px; }
+  .lsHero__inner{ grid-template-columns: 1fr; }
+  .lsHeroCard img{ height: 300px; }
+  .lsGrid4{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lsGrid3{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lsSplit{ grid-template-columns: 1fr; }
+  .lsIndustry{ grid-template-columns: 1fr; }
+  .lsImgFrame img{ height: 240px; }
+}
+@media (max-width: 640px){
+  .lsSection{ padding: 60px 0; }
+  .lsGrid4, .lsGrid3{ grid-template-columns: 1fr; }
+  /* IMPORTANT: no hover movement on mobile */
+  .lsBtn, .lsCard, .lsIndustry{ transition: none !important; }
+}
+/* =========================================
+   UPDATED "AGENTS" SECTION STYLES
+   - Better glass + gradient
+   - Left + Right cards SAME HEIGHT (desktop)
+   - Smooth animations (desktop only)
+   Paste AFTER your current CSS (override)
+========================================= */
+
+/* nicer alt section bg */
+#agents.lsSection--alt{
+  position: relative;
+  background:
+    radial-gradient(1100px 520px at 12% 10%, rgba(79,200,255,.14), transparent 60%),
+    radial-gradient(900px 520px at 88% 22%, rgba(255,122,78,.12), transparent 55%),
+    radial-gradient(900px 600px at 55% 90%, rgba(178,110,255,.10), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+  border-top: 1px solid rgba(255,255,255,.06);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  overflow: hidden;
+}
+
+/* split: equal height cards */
+#agents .lsSplit{
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 18px;
+  align-items: stretch;            /* IMPORTANT: stretch to same row height */
+}
+
+/* LEFT column becomes a glass card too (same height as panel) */
+#agents .lsSplit > .lsReveal{
+  height: 100%;                    /* IMPORTANT */
+  border-radius: 18px;
+  padding: 18px;
+  background:
+    radial-gradient(800px 340px at 10% 0%, rgba(79,200,255,.12), transparent 60%),
+    radial-gradient(720px 340px at 90% 40%, rgba(178,110,255,.10), transparent 60%),
+    rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 24px 70px rgba(0,0,0,.30);
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle animated sheen */
+#agents .lsSplit > .lsReveal::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: linear-gradient(120deg,
+    transparent 0%,
+    rgba(255,255,255,.10) 18%,
+    transparent 38%
+  );
+  transform: translateX(-40%);
+  opacity: .55;
+  pointer-events:none;
+}
+
+@media (hover:hover) and (pointer:fine){
+  #agents .lsSplit > .lsReveal::before{
+    animation: lsSheen 5.6s ease-in-out infinite;
+  }
+}
+@keyframes lsSheen{
+  0%, 65% { transform: translateX(-60%); opacity: .0; }
+  75%     { opacity: .55; }
+  100%    { transform: translateX(60%); opacity: .0; }
+}
+
+/* Agent list layout */
+#agents .lsAgentList{
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+/* each agent row */
+#agents .lsAgent{
+  display:flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px;
+  border-radius: 16px;
+
+  background: rgba(0,0,0,.20);
+  border: 1px solid rgba(255,255,255,.10);
+  position: relative;
+  overflow:hidden;
+}
+
+#agents .lsAgent::after{
+  content:"";
+  position:absolute;
+  left:-60px;
+  top:-60px;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle at 30% 30%, rgba(79,200,255,.18), transparent 60%);
+  filter: blur(6px);
+  opacity: .9;
+  pointer-events:none;
+}
+
+#agents .lsAgent__icon{
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+  display:grid;
+  place-items:center;
+
+  background:
+    radial-gradient(60px 60px at 30% 20%, rgba(79,200,255,.22), transparent 60%),
+    linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  border: 1px solid rgba(255,255,255,.14);
+  color: rgba(234,242,255,.92);
+  box-shadow: 0 18px 40px rgba(0,0,0,.22);
+}
+
+#agents .lsAgent__name{
+  font-weight: 900;
+  color: rgba(234,242,255,.96);
+  margin-bottom: 4px;
+}
+#agents .lsAgent__text{
+  color: rgba(234,242,255,.78);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+/* hover effects - desktop only */
+@media (hover:hover) and (pointer:fine){
+  #agents .lsAgent{
+    transition: transform .28s ease, border-color .28s ease, background .28s ease;
+  }
+  #agents .lsAgent:hover{
+    transform: translateY(-4px);
+    background: rgba(0,0,0,.26);
+    border-color: rgba(255,255,255,.18);
+  }
+  #agents .lsAgent__icon{
+    transition: transform .28s ease, filter .28s ease;
+  }
+  #agents .lsAgent:hover .lsAgent__icon{
+    transform: scale(1.05);
+    filter: drop-shadow(0 18px 40px rgba(79,200,255,.18));
+  }
+}
+
+/* RIGHT panel (per-decision) — upgraded, same height */
+#agents .lsPanel{
+  height: 100%;                    /* IMPORTANT */
+  border-radius: 18px;
+  padding: 18px;
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(900px 360px at 10% 0%, rgba(255,122,78,.10), transparent 60%),
+    radial-gradient(900px 360px at 90% 40%, rgba(79,200,255,.14), transparent 60%),
+    linear-gradient(135deg, rgba(0,0,0,.26), rgba(255,255,255,.04));
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 24px 80px rgba(0,0,0,.38);
+}
+
+#agents .lsPanel::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(90deg, rgba(79,200,255,.55), rgba(178,110,255,.45), rgba(255,122,78,.45));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: .55;
+  pointer-events:none;
+}
+
+#agents .lsPanel__title{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  font-weight: 900;
+  color: rgba(234,242,255,.96);
+  margin-bottom: 10px;
+}
+
+#agents .lsSteps{
+  margin: 12px 0 12px;
+  padding-left: 0;
+  list-style: none;
+  counter-reset: lsStep;
+  display: grid;
+  gap: 10px;
+}
+
+#agents .lsSteps li{
+  counter-increment: lsStep;
+  position: relative;
+  padding: 12px 
+}
+
+/* ================================
+   LOADSIGHT — ADVANTAGES (lsAdv*)
+   Works with your existing JSX classnames
+================================ */
+
+/* Section wrapper (optional: keep if lsSection already styled) */
+#advantages.lsSection{
+  position: relative;
+  padding: 78px 0;
+  overflow: hidden;
+}
+
+/* Nice background layer just for this section */
+#advantages.lsSection::before{
+  content:"";
+  position:absolute;
+  inset:-220px -140px -220px -140px;
+  background:
+    radial-gradient(900px 420px at 14% 12%, rgba(79,200,255,.16), transparent 60%),
+    radial-gradient(900px 460px at 92% 28%, rgba(255,122,78,.14), transparent 60%),
+    radial-gradient(820px 520px at 60% 95%, rgba(178,110,255,.12), transparent 60%);
+  filter: blur(12px);
+  opacity: .95;
+  pointer-events:none;
+}
+
+#advantages .lsContainer,
+#advantages .lsSection__head,
+#advantages .lsAdvGrid,
+#advantages .lsAdvStrip{
+  position: relative;
+  z-index: 1;
+}
+
+/* Head spacing */
+#advantages .lsSection__head{
+  max-width: 860px;
+  margin-bottom: 18px;
+}
+
+/* Grid */
+#advantages .lsAdvGrid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+/* Card */
+#advantages .lsAdvCard{
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 22px 70px rgba(0,0,0,.32);
+  position: relative;
+  overflow: hidden;
+}
+
+/* soft glow inside card */
+#advantages .lsAdvCard::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:
+    radial-gradient(560px 220px at 18% 0%, rgba(79,200,255,.14), transparent 60%),
+    radial-gradient(520px 240px at 90% 60%, rgba(178,110,255,.12), transparent 60%),
+    radial-gradient(520px 240px at 50% 120%, rgba(255,122,78,.10), transparent 60%);
+  opacity:.95;
+  pointer-events:none;
+}
+
+#advantages .lsAdvCard > *{
+  position: relative;
+  z-index: 1;
+}
+
+/* Icon pill */
+#advantages .lsAdvIcon{
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: rgba(0,0,0,.22);
+  border: 1px solid rgba(255,255,255,.14);
+  color: #4fc8ff;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* List */
+#advantages .lsAdvList{
+  margin: 10px 0 0;
+  padding-left: 18px;
+  color: rgba(234,242,255,.80);
+  line-height: 1.65;
+  font-size: 13.5px;
+}
+
+#advantages .lsAdvList li{
+  margin: 6px 0;
+}
+
+/* Hover only desktop (no moving on mobile) */
+@media (hover:hover) and (pointer:fine){
+  #advantages .lsAdvCard{
+    transition: transform .32s ease, border-color .32s ease, filter .32s ease;
+  }
+  #advantages .lsAdvCard:hover{
+    transform: translateY(-6px);
+    border-color: rgba(255,255,255,.20);
+    filter: brightness(1.03);
+  }
+  #advantages .lsAdvCard:hover .lsAdvIcon{
+    box-shadow: 0 18px 50px rgba(79,200,255,.18);
+  }
+}
+
+/* Pills strip */
+#advantages .lsAdvStrip{
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+}
+
+#advantages .lsAdvStrip__pill{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.18);
+  color: rgba(234,242,255,.86);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  #advantages .lsAdvGrid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px){
+  #advantages.lsSection{ padding: 60px 0; }
+  #advantages .lsAdvGrid{ grid-template-columns: 1fr; }
+  /* no hover movement on mobile */
+  #advantages .lsAdvCard{ transition: none !important; }
+}

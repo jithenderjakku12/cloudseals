@@ -1,0 +1,476 @@
+/* =========================================================
+   HEADER / NAVBAR STYLES
+   Project: CloudSeals Web
+   Purpose: Glass header + centered nav + stable dropdown
+   ========================================================= */
+
+/* -------------------------
+   HEADER CONTAINER
+   -------------------------
+   - Fixed header at top
+   - Glass / frosted effect ONLY on header bar
+*/
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  
+
+  background: rgba(15, 23, 42, 0.45);     /* glass background */
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  margin: 20px 30px;
+  border-radius: 15px;
+}
+
+
+/* Services dropdown stays open when active */
+.dropdown.active .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+
+/* -------------------------
+   HEADER INNER LAYOUT
+   -------------------------
+   Grid layout:
+   [ Logo ] [ Center Nav ] [ Hamburger ]
+*/
+.header-inner {
+  max-width: 1350px;
+  margin: 0 auto;
+  padding: 12px 20px;
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+}
+
+/* -------------------------
+   BRAND / LOGO
+   -------------------------
+   - Logo stays LEFT
+   - No negative margins
+*/
+.brand {
+  display: flex;
+  align-items: center;
+  margin-left: 0;
+}
+
+.logo {
+  height:70px;
+  width: auto;
+}
+
+/* -------------------------
+   NAVIGATION (CENTERED)
+   -------------------------
+   - All menu items in center
+*/
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  justify-self: center;
+}
+
+/* -------------------------
+   NAV LINKS (HOME, ETC.)
+   -------------------------
+   - Larger padding
+   - Slow hover animation
+*/
+.nav a,
+.dropbtn,
+.nav-cta {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+
+  color: rgba(255, 255, 255, 0.95);
+  text-decoration: none;
+
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  transition:
+    padding 700ms ease,
+    background 700ms ease,
+    color 700ms ease,
+    transform 700ms ease;
+}
+
+/* Hover effect on menu items */
+.nav a:hover,
+.dropbtn:hover {
+ 
+
+  color: #5aaeff;
+ 
+}
+
+/* -------------------------
+   CTA BUTTON (CONTACT)
+   ------------------------- */
+.nav-cta {
+  background: #0d6efd;
+  color: #fff;
+}
+
+.nav-cta:hover {
+ 
+  color: #5aaeff;
+  
+}
+
+/* -------------------------
+   DROPDOWN CONTAINER
+   -------------------------
+   - Relative positioning
+   - Hover bridge to prevent closing
+*/
+.dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Invisible hover buffer (IMPORTANT)
+   Prevents dropdown closing when
+   mouse moves from tab → options */
+.dropdown::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 20px;
+}
+
+/* -------------------------
+   DROPDOWN PANEL
+   -------------------------
+   - Smooth open / close
+   - Stays open longer
+*/
+.dropdown-content {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(14px);
+
+  min-width: 300px;
+  padding: 18px;
+  border-radius: 12px;
+
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 900ms ease,
+    transform 900ms ease,
+    visibility 900ms ease;
+}
+
+/* Show dropdown on hover (tab OR panel) */
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* -------------------------
+   DROPDOWN HEADER
+   ------------------------- */
+.dropdown-content h4 {
+  color: #fff;
+  font-size: 15px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  padding-bottom: 6px;
+}
+
+/* -------------------------
+   DROPDOWN LINKS
+   ------------------------- */
+.dropdown-content a {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 10px;
+
+  color: #dce9ff;
+  font-size: 14px;
+  text-decoration: none;
+
+  transition:
+    background 700ms ease,
+    color 700ms ease,
+    transform 700ms ease;
+}
+
+.dropdown-content a:hover {
+
+  color: #5aaeff;
+  transform: translateX(8px);
+}
+
+/* -------------------------
+   HAMBURGER MENU (MOBILE)
+   ------------------------- */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* -------------------------
+   RESPONSIVE (MOBILE)
+   -------------------------
+   - Nav becomes dropdown panel
+*/
+@media (max-width: 1000px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+
+    flex-direction: column;
+    gap: 16px;
+    padding: 18px 0;
+
+    background: rgba(11, 18, 32, 0.95);
+    backdrop-filter: blur(12px);
+
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+
+    transition: opacity 450ms ease, transform 450ms ease;
+  }
+
+  .nav.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* Mobile dropdown stays expanded */
+  .dropdown-content {
+    position: static;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    background: transparent;
+    padding: 8px 0;
+  }
+}
+
+/* ================================
+   SUBMENU ONLY FOR CLOUD
+   (applies only when .has-submenu exists)
+================================ */
+
+/* each row wrapper */
+.dropdown-item{
+  position: relative;
+}
+
+/* link row layout */
+.dropdown-link{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  width: 100%;
+}
+
+/* arrow */
+.submenu-arrow{
+  opacity: 0.7;
+  margin-left: 10px;
+}
+
+/* submenu hidden by default */
+.submenu{
+  position: absolute;
+  top: 0;
+  left: calc(100% + 14px);
+  min-width: 280px;
+  padding: 18px;
+  border-radius: 12px;
+
+  background: rgba(0,0,0,0.88);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(10px);
+
+  transition: opacity 400ms ease, transform 400ms ease, visibility 400ms ease;
+  z-index: 999;
+}
+
+/* show submenu ONLY when hovering the item that has submenu (Cloud) */
+.has-submenu:hover .submenu{
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* hover bridge so it won't close while moving mouse */
+.has-submenu::after{
+  content:"";
+  position:absolute;
+  top: 0;
+  right: -18px;
+  width: 18px;
+  height: 100%;
+}
+
+/* submenu link styles */
+.submenu a{
+  display:block;
+  padding: 10px 0;
+  color:#dce9ff;
+  text-decoration:none;
+  transition: color 250ms ease, transform 250ms ease;
+}
+.submenu a:hover{
+  color:#5aaeff;
+  transform: translateX(6px);
+}
+
+
+/* ================================
+   NAV SEARCH (STATIC – NO SHIFT)
+================================ */
+
+/* Container */
+.nav-search{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 6px 10px;
+  border-radius: 12px;
+
+  
+ 
+
+  transition: background 300ms ease, border 300ms ease;
+}
+
+.search {
+  color: #fff;
+}
+
+/* Hover background */
+.nav-search:hover{
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+/* Black search icon */
+.search-icon{
+  font-size: 16px;
+  cursor: pointer;
+               /* BLACK icon */
+  filter: invert(1);           /* visible on dark header */
+}
+
+/* Input hidden initially */
+.search-input{
+  width: 0;
+  opacity: 0;
+
+  border: none;
+  outline: none;
+  background: transparent;
+
+  color: #fff;
+  font-size: 14px;
+
+  transition: width 300ms ease, opacity 200ms ease;
+}
+
+/* Placeholder */
+.search-input::placeholder{
+  color: rgba(255,255,255,0.7);
+}
+
+/* Expand input on hover */
+.nav-search.open .search-input{
+  width: 180px;
+  opacity: 1;
+}
+
+.nav-search{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.06);
+}
+
+.search-btn{
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display:grid;
+  place-items:center;
+}
+
+.search-input{
+  width: 220px;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: #fff;
+}
+
+/* optional: collapse when not open */
+.nav-search:not(.open) .search-input{
+  width: 0;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: width .2s ease, opacity .2s ease;
+}
+.nav-search.open .search-input{
+  width: 220px;
+  opacity: 1;
+  pointer-events: auto;
+  transition: width .2s ease, opacity .2s ease;
+}
+
+

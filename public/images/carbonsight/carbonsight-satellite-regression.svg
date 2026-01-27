@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+
+
+    <defs>
+      <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#070B19"/>
+        <stop offset="55%" stop-color="#0B1640"/>
+        <stop offset="100%" stop-color="#0F2A5C"/>
+      </linearGradient>
+      <radialGradient id="orbCyan" cx="25%" cy="15%" r="60%">
+        <stop offset="0%" stop-color="#4fc8ff" stop-opacity="0.35"/>
+        <stop offset="65%" stop-color="#4fc8ff" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="orbOrange" cx="85%" cy="25%" r="60%">
+        <stop offset="0%" stop-color="#ff7a4e" stop-opacity="0.26"/>
+        <stop offset="65%" stop-color="#ff7a4e" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="orbViolet" cx="65%" cy="90%" r="70%">
+        <stop offset="0%" stop-color="#b26eff" stop-opacity="0.22"/>
+        <stop offset="70%" stop-color="#b26eff" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="8" result="blur"/>
+        <feMerge>
+          <feMergeNode in="blur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+    
+<rect width="1200" height="800" fill="url(#bg3)"/>
+<rect width="1200" height="800" fill="url(#orbViolet)"/>
+<!-- timeline -->
+<g transform="translate(100 150)">
+  <rect width="1000" height="500" rx="26" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)"/>
+  <g transform="translate(60 70)">
+    <line x1="0" y1="330" x2="880" y2="330" stroke="rgba(255,255,255,0.22)" stroke-width="3"/>
+    <circle cx="0" cy="330" r="10" fill="#4fc8ff"/><circle cx="220" cy="330" r="10" fill="#4fc8ff"/><circle cx="440" cy="330" r="10" fill="#4fc8ff"/><circle cx="660" cy="330" r="10" fill="#4fc8ff"/><circle cx="880" cy="330" r="10" fill="#4fc8ff"/>
+    <rect x="-70" y="90" width="140" height="170" rx="18" fill="rgba(0,0,0,0.22)" stroke="rgba(255,255,255,0.12)"/><rect x="150" y="90" width="140" height="170" rx="18" fill="rgba(0,0,0,0.22)" stroke="rgba(255,255,255,0.12)"/><rect x="370" y="90" width="140" height="170" rx="18" fill="rgba(0,0,0,0.22)" stroke="rgba(255,255,255,0.12)"/><rect x="590" y="90" width="140" height="170" rx="18" fill="rgba(0,0,0,0.22)" stroke="rgba(255,255,255,0.12)"/><rect x="810" y="90" width="140" height="170" rx="18" fill="rgba(0,0,0,0.22)" stroke="rgba(255,255,255,0.12)"/>
+    <!-- "sat tiles" -->
+    <path d="M -55 120 L 55 120 L 40 240 L -40 240 Z" fill="rgba(79,200,255,0.12)"/><path d="M 165 120 L 275 120 L 260 240 L 180 240 Z" fill="rgba(79,200,255,0.12)"/><path d="M 385 120 L 495 120 L 480 240 L 400 240 Z" fill="rgba(79,200,255,0.12)"/><path d="M 605 120 L 715 120 L 700 240 L 620 240 Z" fill="rgba(79,200,255,0.12)"/><path d="M 825 120 L 935 120 L 920 240 L 840 240 Z" fill="rgba(79,200,255,0.12)"/>
+    <path d="M -50 170 C -20 130, 20 130, 50 170 C 20 210, -20 210, -50 170 Z" fill="rgba(255,122,78,0.10)"/><path d="M 170 170 C 200 130, 240 130, 270 170 C 240 210, 200 210, 170 170 Z" fill="rgba(255,122,78,0.10)"/><path d="M 390 170 C 420 130, 460 130, 490 170 C 460 210, 420 210, 390 170 Z" fill="rgba(255,122,78,0.10)"/><path d="M 610 170 C 640 130, 680 130, 710 170 C 680 210, 640 210, 610 170 Z" fill="rgba(255,122,78,0.10)"/><path d="M 830 170 C 860 130, 900 130, 930 170 C 900 210, 860 210, 830 170 Z" fill="rgba(255,122,78,0.10)"/>
+    <!-- arrow -->
+    <path d="M 880 330 L 920 330" stroke="rgba(255,255,255,0.22)" stroke-width="3"/>
+    <path d="M 920 330 L 904 320 L 904 340 Z" fill="rgba(255,255,255,0.22)"/>
+    <!-- regression label pill -->
+    <g transform="translate(560 20)">
+      <rect width="300" height="46" rx="23" fill="rgba(0,0,0,0.22)" stroke="rgba(255,255,255,0.12)"/>
+      <circle cx="26" cy="23" r="8" fill="#ff7a4e"/>
+      <rect x="46" y="14" width="230" height="18" rx="9" fill="rgba(255,255,255,0.07)"/>
+    </g>
+  </g>
+</g>
+
+</svg>
