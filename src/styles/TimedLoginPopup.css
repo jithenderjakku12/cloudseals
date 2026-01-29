@@ -206,3 +206,111 @@
 @media (max-width: 520px){
   .tp-grid2{ grid-template-columns: 1fr; }
 }
+
+
+/* ===== Purpose Select (Modern) ===== */
+.tp-field select{
+  width: 100%;
+  height: 46px;
+  padding: 0 46px 0 14px;  /* space for arrow */
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+  color: #eaf2ff;
+  outline: none;
+
+  font-size: 14px;
+  letter-spacing: 0.2px;
+
+  /* remove default arrow */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  transition: border-color .2s ease, box-shadow .2s ease, transform .08s ease;
+}
+
+/* custom arrow */
+.tp-field{
+  position: relative;
+}
+
+.tp-field select{
+  cursor: pointer;
+}
+
+.tp-field select:focus{
+  border-color: rgba(79,200,255,0.55);
+  box-shadow: 0 0 0 4px rgba(79,200,255,0.16);
+}
+
+/* subtle press effect */
+.tp-field select:active{
+  transform: translateY(0.5px);
+}
+
+/* arrow icon */
+.tp-field select + .tp-selectArrow{
+  pointer-events: none;
+  position: absolute;
+  right: 14px;
+  top: 38px;              /* adjust based on your label spacing */
+  width: 18px;
+  height: 18px;
+  opacity: 0.8;
+  transform: translateY(-50%);
+}
+
+/* dropdown options (limited support across browsers) */
+.tp-field select option{
+  background: #0b1220;
+  color: #eaf2ff;
+}
+
+/* invalid state (optional) */
+.tp-field select.tp-invalid{
+  border-color: rgba(255,122,78,0.55);
+  box-shadow: 0 0 0 4px rgba(255,122,78,0.12);
+}
+.tp-field{ position: relative; }
+
+.tp-field select{
+  width: 100%;
+  height: 46px;
+  padding: 0 46px 0 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+  color: #eaf2ff;
+  outline: none;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.tp-field select:focus{
+  border-color: rgba(79,200,255,0.55);
+  box-shadow: 0 0 0 4px rgba(79,200,255,0.16);
+}
+
+.tp-selectArrow{
+  pointer-events: none;
+  position: absolute;
+  right: 14px;
+  top: 38px; /* adjust if label spacing differs */
+  width: 18px;
+  height: 18px;
+  opacity: 0.85;
+  transform: translateY(-50%);
+  color: rgba(234,242,255,.8);
+}
+
+.tp-field select option{
+  background: #0b1220;
+  color: #eaf2ff;
+}

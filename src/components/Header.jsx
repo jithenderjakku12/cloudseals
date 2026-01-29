@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink,Link, useNavigate } from "react-router-dom";
 import { IoMdSearch } from "react-icons/io";
 
 export default function Header() {
@@ -23,19 +23,19 @@ export default function Header() {
     <header className="header">
       <div className="header-inner">
         {/* LOGO */}
-        <Link to="/" className="brand" onClick={() => setOpen(false)}>
+        <NavLink to="/" className="brand" onClick={() => setOpen(false)}>
           <img src="/images/logo.svg" alt="CloudSeals" className="logo" />
-        </Link>
+        </NavLink>
 
         {/* NAV */}
         <nav className={`nav ${open ? "active" : ""}`}>
-          <Link to="/" className="nav-link" onClick={() => setOpen(false)}>
+          <NavLink to="/" className="nav-link" onClick={() => setOpen(false)}>
             Home
-          </Link>
+          </NavLink>
 
-          <Link to="/about" className="nav-link" onClick={() => setOpen(false)}>
+          <NavLink to="/about" className="nav-link" onClick={() => setOpen(false)}>
             About Us
-          </Link>
+          </NavLink>
 
           {/* PRODUCTS */}
           <div className="dropdown">
@@ -43,9 +43,9 @@ export default function Header() {
               Guardian Eye - Products ▾
             </button>
             <div className="dropdown-content">
-              <Link to="/complisight" onClick={() => setOpen(false)}>Complisight</Link>
-              <Link to="/loadsight" onClick={() => setOpen(false)}>Loadsight</Link>
-              <Link to="/carbonsight" onClick={() => setOpen(false)}>CarbonSight</Link>
+              <NavLink to="/complisight" onClick={() => setOpen(false)}>Complisight</NavLink>
+              <NavLink to="/loadsight" onClick={() => setOpen(false)}>Loadsight</NavLink>
+              <NavLink to="/carbonsight" onClick={() => setOpen(false)}>CarbonSight</NavLink>
             </div>
           </div>
 
@@ -58,60 +58,60 @@ export default function Header() {
             <div className="dropdown-content">
               {/* CLOUD */}
               <div className="dropdown-item has-submenu">
-                <Link to="/services/cloud-migration" className="dropdown-link">
+                <NavLink to="/services/cloud-migration" className="dropdown-link">
                   Cloud <span className="submenu-arrow"> › </span>
-                </Link>
+                </NavLink>
 
                 <div className="submenu">
-                  <Link to="/services/cloud/cloud-migration" className="submenu-link" onClick={() => setOpen(false)}>
+                  <NavLink to="/services/cloud/cloud-migration" className="submenu-link" onClick={() => setOpen(false)}>
                     Cloud Migration
-                  </Link>
-                  <Link to="/services/cloud/cloud-services" className="submenu-link" onClick={() => setOpen(false)}>
+                  </NavLink>
+                  <NavLink to="/services/cloud/cloud-services" className="submenu-link" onClick={() => setOpen(false)}>
                     Cloud Services
-                  </Link>
-                  <Link to="/services/cloud/devops-services" className="submenu-link" onClick={() => setOpen(false)}>
+                  </NavLink>
+                  <NavLink to="/services/cloud/devops-services" className="submenu-link" onClick={() => setOpen(false)}>
                     DevOps Services
-                  </Link>
+                  </NavLink>
                 </div>
               </div>
 
               <div className="dropdown-item">
-                <Link to="/services/application_development" className="dropdown-link" onClick={() => setOpen(false)}>
+                <NavLink to="/services/application_development" className="dropdown-link" onClick={() => setOpen(false)}>
                   Application Development
-                </Link>
+                </NavLink>
               </div>
 
               <div className="dropdown-item">
-                <Link to="/services/data-aiops" className="dropdown-link" onClick={() => setOpen(false)}>
+                <NavLink to="/services/data-aiops" className="dropdown-link" onClick={() => setOpen(false)}>
                   Q & A
-                </Link>
+                </NavLink>
               </div>
 
               <div className="dropdown-item">
-                <Link to="/services/data-analytics" className="dropdown-link" onClick={() => setOpen(false)}>
+                <NavLink to="/services/data-analytics" className="dropdown-link" onClick={() => setOpen(false)}>
                   Data Analytics
-                </Link>
+                </NavLink>
               </div>
 
               <div className="dropdown-item">
-                <Link to="/services/it-consulting" className="dropdown-link" onClick={() => setOpen(false)}>
+                <NavLink to="/services/it-consulting" className="dropdown-link" onClick={() => setOpen(false)}>
                   IT Consulting
-                </Link>
+                </NavLink>
               </div>
             </div>
           </div>
 
-          <Link to="/industries" className="nav-link" onClick={() => setOpen(false)}>
+          <NavLink to="/industries" className="nav-link" onClick={() => setOpen(false)}>
             Industries 4.0
-          </Link>
+          </NavLink>
 
-          <Link to="/insights" className="nav-link" onClick={() => setOpen(false)}>
+          <NavLink to="/insights" className="nav-link" onClick={() => setOpen(false)}>
             Insight
-          </Link>
+          </NavLink>
 
-          <Link to="/contact" className="nav-link" onClick={() => setOpen(false)}>
+          <NavLink to="/contact" className="nav-link" onClick={() => setOpen(false)}>
             Contact
-          </Link>
+          </NavLink>
 
           {/* ✅ SEARCH (form submit + enter + click icon) */}
           <form

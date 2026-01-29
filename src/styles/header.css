@@ -474,3 +474,24 @@
 }
 
 
+/* ACTIVE NAV ITEM */
+.nav-link.active{
+  font-weight: 800;
+  font-size: 16.5px;            /* normal 15px -> increase */
+  color: #ffcc66;               /* gold */
+  letter-spacing: 0.2px;
+  text-shadow: 0 0 14px rgba(255, 204, 102, 0.25);
+  transform: translateY(-1px);
+}
+
+/* optional small underline */
+.nav-link.active::after{
+  content:"";
+  position:absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 6px;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(255, 204, 102, 0.95);
+}

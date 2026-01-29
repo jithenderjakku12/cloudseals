@@ -1,6 +1,4 @@
 import React, { useEffect, useMemo, useState } from "react";
-
-
 import {
   FaPhoneAlt,
   FaEnvelope,
@@ -12,10 +10,10 @@ import {
   FaRobot,
   FaCloud,
   FaLeaf,
-  FaArrowRight, // ✅ FIX: you were using it but not importing it
+  FaArrowRight,
 } from "react-icons/fa";
 
-export default function ContactPage() {
+export default function ContactPage({ apiBaseUrl = "" }) {
   // Reveal animations
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -90,22 +88,46 @@ export default function ContactPage() {
     message: "",
   });
 
-  const [status, setStatus] = useState({ type: "idle", msg: "" }); // idle | error | success
+  const [status, setStatus] = useState({ type: "idle", msg: "" }); // idle | loading | error | success
 
   function onChange(e) {
     const { name, value } = e.target;
     setForm((s) => ({ ...s, [name]: value }));
   }
 
+  // ✅ Phone: digits only, max 10
+  function onPhoneChange(e) {
+    const digits = e.target.value.replace(/\D/g, "").slice(0, 10);
+    setForm((s) => ({ ...s, phone: digits }));
+  }
+
+  // ✅ Validation rules
+  const isGmail = (email) => /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(email.trim());
+  const is10Digits = (phone) => /^\d{10}$/.test(phone);
+
   function validate() {
     if (!form.fullname.trim()) return "Please enter your full name.";
-    if (!form.email.trim()) return "Please enter your business email.";
-    if (!/^\S+@\S+\.\S+$/.test(form.email.trim())) return "Please enter a valid email address.";
+    if (!form.email.trim()) return "Please enter your Gmail address.";
+    if (!isGmail(form.email)) return "Email must be a valid @gmail.com address.";
+    if (!form.phone.trim()) return "Please enter your phone number.";
+    if (!is10Digits(form.phone)) return "Phone number must be exactly 10 digits.";
     if (!form.message.trim()) return "Please enter your message.";
     return "";
   }
 
-  function onSubmit(e) {
+  async function postJson(path, payload) {
+    const res = await fetch(`${apiBaseUrl}${path}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data?.error || "Request failed");
+    return data;
+  }
+
+  async function onSubmit(e) {
     e.preventDefault();
 
     const err = validate();
@@ -114,25 +136,40 @@ export default function ContactPage() {
       return;
     }
 
-    // ✅ For now we show success on UI (later connect API)
-    setStatus({
-      type: "success",
-      msg: "Thanks! We received your enquiry. Our team will get back to you within 24–48 business hours.",
-    });
+    try {
+      setStatus({ type: "loading", msg: "Sending your message..." });
 
-    setForm({
-      topic: topics[0],
-      fullname: "",
-      email: "",
-      company: "",
-      phone: "",
-      message: "",
-    });
+      // ✅ Vercel endpoint (serverless function)
+      await postJson("/api/leads-contact", {
+        name: form.fullname.trim(),
+        email: form.email.trim(),
+        phone: form.phone.trim(),
+        company: form.company.trim() || "-",
+        purpose: form.topic, // topic goes as purpose
+        message: form.message.trim(),
+        pageUrl: window.location.href,
+      });
+
+      setStatus({
+        type: "success",
+        msg: "Thanks! We received your enquiry. Our team will get back to you within 24–48 business hours.",
+      });
+
+      setForm({
+        topic: topics[0],
+        fullname: "",
+        email: "",
+        company: "",
+        phone: "",
+        message: "",
+      });
+    } catch (error) {
+      setStatus({ type: "error", msg: error.message || "Something went wrong." });
+    }
   }
 
   return (
     <div className="csConPage">
-      {/* HERO + FORM */}
       <header className="csConHero">
         <div className="csConHero__bg" />
 
@@ -218,7 +255,11 @@ export default function ContactPage() {
               </div>
 
               {status.type !== "idle" && (
-                <div className={`csConAlert ${status.type === "success" ? "isSuccess" : "isError"}`}>
+                <div
+                  className={`csConAlert ${
+                    status.type === "success" ? "isSuccess" : status.type === "error" ? "isError" : ""
+                  }`}
+                >
                   {status.type === "success" ? (
                     <FaCheckCircle aria-hidden="true" />
                   ) : (
@@ -245,9 +286,8 @@ export default function ContactPage() {
                 <div className="csConGrid2">
                   <label className="csConLabel">
                     <div>
-  Full name <span className="csConReq">*</span>
+                      Full name <span className="csConReq">*</span>
                     </div>
-                  
                     <input
                       className="csConInput"
                       name="fullname"
@@ -260,15 +300,14 @@ export default function ContactPage() {
 
                   <label className="csConLabel">
                     <div>
-Business email <span className="csConReq">*</span>
+                      Email <span className="csConReq">*</span>
                     </div>
-                    
                     <input
                       className="csConInput"
                       name="email"
                       value={form.email}
                       onChange={onChange}
-                      placeholder="name@company.com"
+                      placeholder="example@gmail.com"
                       autoComplete="email"
                     />
                   </label>
@@ -282,29 +321,30 @@ Business email <span className="csConReq">*</span>
                       name="company"
                       value={form.company}
                       onChange={onChange}
-                      placeholder="Company name"
+                      placeholder="Company name (optional)"
                       autoComplete="organization"
                     />
                   </label>
 
                   <label className="csConLabel">
-                    Phone
+                    Phone <span className="csConReq">*</span>
                     <input
                       className="csConInput"
                       name="phone"
                       value={form.phone}
-                      onChange={onChange}
-                      placeholder="Optional"
+                      onChange={onPhoneChange}
+                      placeholder="9876543210"
                       autoComplete="tel"
+                      inputMode="numeric"
+                      maxLength={10}
                     />
                   </label>
                 </div>
 
                 <label className="csConLabel">
                   <div>
-Message <span className="csConReq">*</span>
+                    Message <span className="csConReq">*</span>
                   </div>
-                  
                   <textarea
                     className="csConTextarea"
                     name="message"
@@ -315,8 +355,8 @@ Message <span className="csConReq">*</span>
                   />
                 </label>
 
-                <button className="csConBtn" type="submit">
-                  Submit <FaArrowRight aria-hidden="true" />
+                <button className="csConBtn" type="submit" disabled={status.type === "loading"}>
+                  {status.type === "loading" ? "Sending..." : "Submit"} <FaArrowRight aria-hidden="true" />
                 </button>
 
                 <p className="csConDisclaimer">

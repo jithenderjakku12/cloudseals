@@ -3,33 +3,56 @@ import "../styles/TimedLoginPopup.css";
 
 const LS_KEY = "cs_logged_in_v1";
 
+const PURPOSE_OPTIONS = [
+  { value: "complisight", label: "CompliSight" },
+  { value: "loadsight", label: "LoadSight" },
+  { value: "carbonsight", label: "CarbonSight" },
+  { value: "guardianeye", label: "GuardianEye" },
+  { value: "ai_services", label: "AI Services" },
+  { value: "other", label: "Other" },
+];
+
 export default function TimedLoginPopup({
-  initialDelayMs = 10000, // 10s
-  repeatDelayMs = 20000,  // 20s after closing if not logged in
+  initialDelayMs = 10000,
+  repeatDelayMs = 20000,
+  apiBaseUrl = "", // ✅ Vercel-ready (same domain). For local backend use: "http://localhost:4000"
 }) {
   const [open, setOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [mode, setMode] = useState("login"); // "login" | "contact"
+  const [mode, setMode] = useState("login"); // login | contact
   const [status, setStatus] = useState({ loading: false, error: "", ok: false });
 
   const t1 = useRef(null);
   const t2 = useRef(null);
 
-  // form state
-  const [login, setLogin] = useState({ email: "", password: "" });
-  const [contact, setContact] = useState({ name: "", email: "", company: "", message: "" });
+  const [lead, setLead] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    purpose: "complisight",
+  });
 
-  // load login status
+  const [contact, setContact] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    purpose: "complisight",
+    message: "",
+  });
+
+  // ✅ validation rules:
+  const emailOk = (email) => /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(email.trim());
+  const phoneOk = (phone) => /^\d{10}$/.test(phone);
+
   useEffect(() => {
     const v = localStorage.getItem(LS_KEY);
     if (v === "1") setLoggedIn(true);
   }, []);
 
-  // start timers
   useEffect(() => {
     if (loggedIn) return;
 
-    // show after 10s
     t1.current = setTimeout(() => {
       setMode("login");
       setOpen(true);
@@ -44,10 +67,9 @@ export default function TimedLoginPopup({
   function scheduleRepeat() {
     if (t2.current) clearTimeout(t2.current);
     t2.current = setTimeout(() => {
-      // only show again if still not logged in
       const v = localStorage.getItem(LS_KEY);
       if (v !== "1") {
-        setMode("contact"); // second time show contact (as you asked)
+        setMode("contact");
         setOpen(true);
       }
     }, repeatDelayMs);
@@ -57,12 +79,10 @@ export default function TimedLoginPopup({
     setOpen(false);
     setStatus({ loading: false, error: "", ok: false });
 
-    // if not logged in, show again after 20s
     const v = localStorage.getItem(LS_KEY);
     if (v !== "1") scheduleRepeat();
   }
 
-  // ESC closes
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => {
@@ -70,51 +90,91 @@ export default function TimedLoginPopup({
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
-  async function handleLoginSubmit(e) {
+  async function postJson(path, payload) {
+    const res = await fetch(`${apiBaseUrl}${path}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data?.error || "Request failed");
+    return data;
+  }
+
+  async function handleLeadSubmit(e) {
     e.preventDefault();
     setStatus({ loading: true, error: "", ok: false });
 
-    // basic validation
-    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(login.email);
-    if (!emailOk || !login.password) {
-      setStatus({ loading: false, error: "Enter valid email & password.", ok: false });
-      return;
+    if (!lead.name) return setStatus({ loading: false, error: "Please enter your name.", ok: false });
+    if (!emailOk(lead.email)) return setStatus({ loading: false, error: "Email must be a valid @gmail.com address.", ok: false });
+    if (!phoneOk(lead.phone)) return setStatus({ loading: false, error: "Phone number must be exactly 10 digits.", ok: false });
+    if (!lead.purpose) return setStatus({ loading: false, error: "Please select a purpose.", ok: false });
+
+    try {
+      // ✅ Vercel endpoint
+      await postJson("/api/leads-login", {
+        name: lead.name.trim(),
+        email: lead.email.trim(),
+        phone: lead.phone.trim(),
+        purpose: lead.purpose,
+        pageUrl: window.location.href,
+      });
+
+      localStorage.setItem(LS_KEY, "1");
+      setLoggedIn(true);
+      setStatus({ loading: false, error: "", ok: true });
+
+      setTimeout(() => {
+        setOpen(false);
+        setStatus({ loading: false, error: "", ok: false });
+      }, 700);
+    } catch (err) {
+      setStatus({ loading: false, error: err.message || "Something went wrong.", ok: false });
     }
-
-    // TODO: Replace with real API call
-    await new Promise((r) => setTimeout(r, 700));
-
-    localStorage.setItem(LS_KEY, "1");
-    setLoggedIn(true);
-    setStatus({ loading: false, error: "", ok: true });
-
-    // close after small delay
-    setTimeout(() => {
-      setOpen(false);
-      setStatus({ loading: false, error: "", ok: false });
-    }, 600);
   }
 
   async function handleContactSubmit(e) {
     e.preventDefault();
     setStatus({ loading: true, error: "", ok: false });
 
-    if (!contact.name || !contact.email || !contact.company || !contact.message) {
-      setStatus({ loading: false, error: "Fill all fields.", ok: false });
-      return;
+    if (!contact.name) return setStatus({ loading: false, error: "Please enter your name.", ok: false });
+    if (!emailOk(contact.email)) return setStatus({ loading: false, error: "Email must be a valid @gmail.com address.", ok: false });
+    if (!phoneOk(contact.phone)) return setStatus({ loading: false, error: "Phone number must be exactly 10 digits.", ok: false });
+    if (!contact.company) return setStatus({ loading: false, error: "Please enter company name.", ok: false });
+    if (!contact.purpose) return setStatus({ loading: false, error: "Please select a purpose.", ok: false });
+    if (!contact.message) return setStatus({ loading: false, error: "Please enter your message.", ok: false });
+
+    try {
+      // ✅ Vercel endpoint
+      await postJson("/api/leads-contact", {
+        name: contact.name.trim(),
+        email: contact.email.trim(),
+        phone: contact.phone.trim(),
+        company: contact.company.trim(),
+        purpose: contact.purpose,
+        message: contact.message.trim(),
+        pageUrl: window.location.href,
+      });
+
+      setStatus({ loading: false, error: "", ok: true });
+
+      setContact({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        purpose: "complisight",
+        message: "",
+      });
+
+      setTimeout(() => closePopup(), 900);
+    } catch (err) {
+      setStatus({ loading: false, error: err.message || "Something went wrong.", ok: false });
     }
-
-    // TODO: Replace with real API call
-    await new Promise((r) => setTimeout(r, 700));
-
-    setStatus({ loading: false, error: "", ok: true });
-    setContact({ name: "", email: "", company: "", message: "" });
-
-    setTimeout(() => {
-      closePopup();
-    }, 700);
   }
 
   if (!open || loggedIn) return null;
@@ -127,25 +187,24 @@ export default function TimedLoginPopup({
         <button className="tp-x" onClick={closePopup} aria-label="Close">✕</button>
 
         <div className="tp-head">
-          <div className="tp-badge">{mode === "login" ? "Login Required" : "Contact Us"}</div>
+          <div className="tp-badge">{mode === "login" ? "Get Started" : "Contact Us"}</div>
           <h3 className="tp-title">
-            {mode === "login" ? "Continue with your account" : "Let’s talk about your needs"}
+            {mode === "login" ? "Share your details to continue" : "Let’s talk about your needs"}
           </h3>
           <p className="tp-sub">
             {mode === "login"
-              ? "For a better experience, please login to continue browsing."
-              : "If you’re not ready to login, send your request and we’ll contact you."}
+              ? "Select the product/service you’re interested in and submit your details."
+              : "Send your request and our team will reach out shortly."}
           </p>
         </div>
 
-        {/* tabs */}
         <div className="tp-tabs">
           <button
             className={`tp-tab ${mode === "login" ? "tp-tab--on" : ""}`}
             onClick={() => setMode("login")}
             type="button"
           >
-            Login
+            Get Started
           </button>
           <button
             className={`tp-tab ${mode === "contact" ? "tp-tab--on" : ""}`}
@@ -157,36 +216,66 @@ export default function TimedLoginPopup({
         </div>
 
         {status.error && <div className="tp-alert tp-alert--bad">{status.error}</div>}
-        {status.ok && <div className="tp-alert tp-alert--ok">Done ✅</div>}
+        {status.ok && <div className="tp-alert tp-alert--ok">Sent ✅</div>}
 
-        {/* content */}
         {mode === "login" ? (
-          <form className="tp-form" onSubmit={handleLoginSubmit}>
+          <form className="tp-form" onSubmit={handleLeadSubmit}>
+            <div className="tp-field">
+              <label>Name</label>
+              <input
+                value={lead.name}
+                onChange={(e) => setLead((s) => ({ ...s, name: e.target.value }))}
+                placeholder="Your name"
+              />
+            </div>
+
             <div className="tp-field">
               <label>Email</label>
               <input
-                value={login.email}
-                onChange={(e) => setLogin((s) => ({ ...s, email: e.target.value }))}
-                placeholder="you@company.com"
+                value={lead.email}
+                onChange={(e) => setLead((s) => ({ ...s, email: e.target.value }))}
+                placeholder="example@gmail.com"
               />
             </div>
 
             <div className="tp-field">
-              <label>Password</label>
+              <label>Phone</label>
               <input
-                type="password"
-                value={login.password}
-                onChange={(e) => setLogin((s) => ({ ...s, password: e.target.value }))}
-                placeholder="••••••••"
+                inputMode="numeric"
+                maxLength={10}
+                value={lead.phone}
+                onChange={(e) => {
+                  const digits = e.target.value.replace(/\D/g, "").slice(0, 10);
+                  setLead((s) => ({ ...s, phone: digits }));
+                }}
+                placeholder="9876543210"
               />
             </div>
 
+            <div className="tp-field">
+              <label>Purpose</label>
+              <select
+                value={lead.purpose}
+                onChange={(e) => setLead((s) => ({ ...s, purpose: e.target.value }))}
+              >
+                {PURPOSE_OPTIONS.map((o) => (
+                  <option key={o.value} value={o.value}>
+                    {o.label}
+                  </option>
+                ))}
+              </select>
+
+              <svg className="tp-selectArrow" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+
             <button className="tp-btn" type="submit" disabled={status.loading}>
-              {status.loading ? "Logging in..." : "Login"}
+              {status.loading ? "Submitting..." : "Submit"}
             </button>
 
             <div className="tp-note">
-              Don’t have access? Switch to <b>Contact</b> and we’ll reach you.
+              Need detailed discussion? Switch to <b>Contact</b>.
             </div>
           </form>
         ) : (
@@ -206,18 +295,52 @@ export default function TimedLoginPopup({
                 <input
                   value={contact.email}
                   onChange={(e) => setContact((s) => ({ ...s, email: e.target.value }))}
-                  placeholder="you@company.com"
+                  placeholder="example@gmail.com"
+                />
+              </div>
+            </div>
+
+            <div className="tp-grid2">
+              <div className="tp-field">
+                <label>Phone</label>
+                <input
+                  inputMode="numeric"
+                  maxLength={10}
+                  value={contact.phone}
+                  onChange={(e) => {
+                    const digits = e.target.value.replace(/\D/g, "").slice(0, 10);
+                    setContact((s) => ({ ...s, phone: digits }));
+                  }}
+                  placeholder="9876543210"
+                />
+              </div>
+
+              <div className="tp-field">
+                <label>Company</label>
+                <input
+                  value={contact.company}
+                  onChange={(e) => setContact((s) => ({ ...s, company: e.target.value }))}
+                  placeholder="Company name"
                 />
               </div>
             </div>
 
             <div className="tp-field">
-              <label>Company</label>
-              <input
-                value={contact.company}
-                onChange={(e) => setContact((s) => ({ ...s, company: e.target.value }))}
-                placeholder="Company name"
-              />
+              <label>Purpose</label>
+              <select
+                value={contact.purpose}
+                onChange={(e) => setContact((s) => ({ ...s, purpose: e.target.value }))}
+              >
+                {PURPOSE_OPTIONS.map((o) => (
+                  <option key={o.value} value={o.value}>
+                    {o.label}
+                  </option>
+                ))}
+              </select>
+
+              <svg className="tp-selectArrow" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </div>
 
             <div className="tp-field">
@@ -225,17 +348,15 @@ export default function TimedLoginPopup({
               <textarea
                 value={contact.message}
                 onChange={(e) => setContact((s) => ({ ...s, message: e.target.value }))}
-                placeholder="Tell us what you need (cloud, devops, sre, security)…"
+                placeholder="Tell us what you need…"
               />
             </div>
 
             <button className="tp-btn" type="submit" disabled={status.loading}>
-              {status.loading ? "Sending..." : "Send Contact"}
+              {status.loading ? "Sending..." : "Send Message"}
             </button>
 
-            <div className="tp-note">
-              We reply fast. Your details stay confidential.
-            </div>
+            <div className="tp-note">We reply fast. Your details stay confidential.</div>
           </form>
         )}
       </div>
