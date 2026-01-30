@@ -141,7 +141,7 @@ export default function CarbonSight() {
           <div className="cbsHero__card cbsReveal">
             <img
               className="cbsHero__img"
-              src="/images/carbonsight/carbonsight-hero.png"
+              src="/images/carbon site/a1.png"
               alt="CarbonSight hero"
               loading="lazy"
             />
@@ -187,7 +187,7 @@ export default function CarbonSight() {
             <div className="cbsWhat__media cbsReveal">
               <img
                 className="cbsWhat__mediaImg"
-                src="/images/carbonsight/carbonsight-kml.png"
+                src="/images/carbon site/satilite.png"
                 alt="KML boundary and zone mapping"
                 loading="lazy"
               />
@@ -201,231 +201,288 @@ export default function CarbonSight() {
 
 
 
-
 <section className="csPage">
-      <div className="csContainer">
-      
+  <div className="csContainer">
 
-        {/* SECTION 1 */}
-        <article className="csSection" id="problem">
-          <div className="csSection__head">
-           
-            <h2 className="csH2">The Problem: The Data Trap</h2>
-            <p className="csLead">
-              The era of <span className="csEm">“estimation”</span> is over. Standard MRV tools rely on manual
-              reporting and static satellite images — they answer: <span className="csQuote">“What does the supplier claim?”</span>
-              <br />
-              CloudSeals answers: <span className="csQuote">“What actually happened?”</span>
-            </p>
+    {/* SECTION 1 */}
+  {/* HERO / FEATURED (Image LEFT, Content RIGHT) */}
+<div className="csHero csSection__head--featured csHero--reverse">
+  {/* LEFT IMAGE */}
+  <div className="csHero__media">
+    <div className="csHero__frame">
+      <img
+        className="csHero__img"
+        src="/images/carbon site/digital-twin-hero.png"
+        alt="Digital twin visualization of mine and forest with sensor scanning"
+        loading="lazy"
+      />
+      <div className="csHero__glow" />
+      <div className="csHero__scan" />
+      <div className="csHero__noise" />
+    </div>
+  </div>
+
+  {/* RIGHT CONTENT */}
+  <div className="csHero__content">
+    <div className="csSection__kicker csKicker--pill">
+      <span className="csKdot" />
+      Verified Physical Reality Layer
+      <span className="csKicker__shine" />
+    </div>
+
+    <h2 className="csH2 csH2--featured">
+      The <span className="csH2__grad">Digital Twin</span> Advantage
+    </h2>
+
+    <p className="csLead csLead--featured">
+      Supply chain platforms track logistics. CloudSeals tracks the{" "}
+      <span className="csEm">matter</span>. By creating a voxel-perfect 3D Twin
+      of physical assets — whether 6 million tons of rock or 50,000 hectares of
+      forest — we provide the ground truth layer behind the world’s most trusted
+      ESG reports.
+    </p>
+
+    <div className="csTags csTags--hero">
+      <span className="csTag csTag--a">
+        <span className="csTag__icon" aria-hidden>⬡</span>
+        <span className="csTag__text">Voxel-precise</span>
+        <span className="csTag__shine" />
+      </span>
+
+      <span className="csTag csTag--b">
+        <span className="csTag__icon" aria-hidden>✔</span>
+        <span className="csTag__text">Audit-ready</span>
+        <span className="csTag__shine" />
+      </span>
+
+      <span className="csTag csTag--c">
+        <span className="csTag__icon" aria-hidden>⟶</span>
+        <span className="csTag__text">Sensor → Certificate</span>
+        <span className="csTag__shine" />
+      </span>
+    </div>
+
+    <div className="csHero__meta">
+      <div className="csMetaCard">
+        <div className="csMetaCard__title">Voxel Twin</div>
+        <div className="csMetaCard__sub">3D ground truth layer</div>
+      </div>
+      <div className="csMetaCard">
+        <div className="csMetaCard__title">Sensor Fusion</div>
+        <div className="csMetaCard__sub">Space · Air · Ground</div>
+      </div>
+      <div className="csMetaCard">
+        <div className="csMetaCard__title">Evidence Chain</div>
+        <div className="csMetaCard__sub">Audit traceability</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    {/* SECTION 2 */}
+    <article className="csSection csSection--problem" id="problem">
+      <div className="csSection__head">
+        <div className="csOverline">
+          <span className="csOverline__num">01</span>
+          <span className="csOverline__label">Reality Check</span>
+          <span className="csOverline__dot" />
+          <span className="csOverline__tag">The Data Trap</span>
+        </div>
+
+        <h2 className="csH2">The Problem: The Data Trap</h2>
+        <p className="csLead">
+          The era of <span className="csEm">“estimation”</span> is over. Standard MRV tools rely on manual
+          reporting and static satellite images — they answer: <span className="csQuote">“What does the supplier claim?”</span>
+          <br />
+          CloudSeals answers: <span className="csQuote">“What actually happened?”</span>
+        </p>
+      </div>
+
+      <div className="csGrid2">
+        <div className="csCard">
+          <h3 className="csH3">The Gap</h3>
+          <p className="csP">Scope 3 emissions are drowning in unverifiable spreadsheets.</p>
+          <div className="csPillRow">
+            <span className="csPill">Manual reporting</span>
+            <span className="csPill">Static imagery</span>
+            <span className="csPill">No ground truth</span>
           </div>
+        </div>
 
-          <div className="csGrid2">
-            <div className="csCard">
-              <h3 className="csH3">The Gap</h3>
-              <p className="csP">Scope 3 emissions are drowning in unverifiable spreadsheets.</p>
-              <div className="csPillRow">
-                <span className="csPill">Manual reporting</span>
-                <span className="csPill">Static imagery</span>
-                <span className="csPill">No ground truth</span>
-              </div>
-            </div>
+        <div className="csCard csCard--danger">
+          <h3 className="csH3">The Risk</h3>
+          <ul className="csList">
+            <li>Greenwashing scandals</li>
+            <li>Inventory fraud</li>
+            <li>“Paper Forests” & phantom assets</li>
+          </ul>
+        </div>
+      </div>
 
-            <div className="csCard csCard--danger">
-              <h3 className="csH3">The Risk</h3>
-              <ul className="csList">
-                <li>Greenwashing scandals</li>
-                <li>Inventory fraud</li>
-                <li>“Paper Forests” & phantom assets</li>
-              </ul>
-            </div>
+      <div className="csCallout">
+        <div className="csCallout__icon">✔</div>
+        <div>
+          <div className="csCallout__title">The Solution</div>
+          <div className="csCallout__text">Moving from “Trust me” to “Show me the Physics.”</div>
+        </div>
+      </div>
+    </article>
+
+    {/* SECTION 3 */}
+    <article className="csSection csSection--tech" id="technology">
+      <div className="csSection__head">
+        <div className="csOverline">
+          <span className="csOverline__num">02</span>
+          <span className="csOverline__label">Verification Engine</span>
+          <span className="csOverline__dot" />
+          <span className="csOverline__tag">Universal Supervisor Node</span>
+        </div>
+
+        <h2 className="csH2">The Core Technology: Your Moat</h2>
+        <p className="csLead">
+          Meet the <span className="csEm">Universal Supervisor Node</span>.
+          Unlike vertical-specific tools, CloudSeals is a universal verification engine powered by Agentic AI —
+          adaptable to any asset class using <span className="csEm">Sensor Fusion</span>.
+        </p>
+      </div>
+
+      <div className="csGrid3">
+        <div className="csCard">
+          <div className="csCard__top">
+            <span className="csMiniTag">1</span>
+            <h3 className="csH3">The Eyes: Multi-Modal Agents</h3>
           </div>
+          <p className="csP">We don’t rely on one data source. Agents fuse telemetry from:</p>
+          <ul className="csList">
+            <li><b>Space:</b> Optical, Radar (NISAR), Hyperspectral Satellites</li>
+            <li><b>Air:</b> Autonomous Drone LiDAR & Thermal Imaging</li>
+            <li><b>Ground:</b> IoT Lysimeters, Sniffers, Soil Sensors</li>
+          </ul>
+        </div>
 
-          <div className="csCallout">
-            <div className="csCallout__icon">✔</div>
-            <div>
-              <div className="csCallout__title">The Solution</div>
-              <div className="csCallout__text">Moving from “Trust me” to “Show me the Physics.”</div>
-            </div>
+        <div className="csCard">
+          <div className="csCard__top">
+            <span className="csMiniTag">2</span>
+            <h3 className="csH3">The Brain: Behavioral Data Analysis</h3>
           </div>
-        </article>
-
-        {/* SECTION 2 */}
-        <article className="csSection" id="technology">
-          <div className="csSection__head">
-            <h2 className="csH2">The Core Technology: Your Moat</h2>
-            <p className="csLead">
-              Meet the <span className="csEm">Universal Supervisor Node</span>.
-              Unlike vertical-specific tools, CloudSeals is a universal verification engine powered by Agentic AI —
-              adaptable to any asset class using <span className="csEm">Sensor Fusion</span>.
-            </p>
+          <p className="csP">
+            Standard AI looks for static numbers. CloudSeals looks for <b>behavior</b>.
+          </p>
+          <div className="csNote">
+            <b>Forestry:</b> We don’t just count trees — we analyze regression maturity signals to distinguish
+            monocultures from biodiverse ecosystems.
           </div>
-
-          <div className="csGrid3">
-            <div className="csCard">
-              <div className="csCard__top">
-                <span className="csMiniTag">1</span>
-                <h3 className="csH3">The Eyes: Multi-Modal Agents</h3>
-              </div>
-              <p className="csP">We don’t rely on one data source. Agents fuse telemetry from:</p>
-              <ul className="csList">
-                <li><b>Space:</b> Optical, Radar (NISAR), Hyperspectral Satellites</li>
-                <li><b>Air:</b> Autonomous Drone LiDAR & Thermal Imaging</li>
-                <li><b>Ground:</b> IoT Lysimeters, Sniffers, Soil Sensors</li>
-              </ul>
-            </div>
-
-            <div className="csCard">
-              <div className="csCard__top">
-                <span className="csMiniTag">2</span>
-                <h3 className="csH3">The Brain: Behavioral Data Analysis</h3>
-              </div>
-              <p className="csP">
-                Standard AI looks for static numbers. CloudSeals looks for <b>behavior</b>.
-              </p>
-              <div className="csNote">
-                <b>Forestry:</b> We don’t just count trees — we analyze regression maturity signals to distinguish
-                monocultures from biodiverse ecosystems.
-              </div>
-              <div className="csNote">
-                <b>ERW:</b> We cross-reference chemical spikes with rainfall physics to prevent sensor hallucinations.
-              </div>
-            </div>
-
-            <div className="csCard">
-              <div className="csCard__top">
-                <span className="csMiniTag">3</span>
-                <h3 className="csH3">The Proof: Immutable Asset Ledgers</h3>
-              </div>
-              <p className="csP">
-                Every verified event — whether a tree unit or a ton of rock — is minted onto a blockchain-backed ledger
-                for full audit traceability.
-              </p>
-              <div className="csPillRow">
-                <span className="csPill">Audit-ready</span>
-                <span className="csPill">Tamper-evident</span>
-                <span className="csPill">End-to-end lineage</span>
-              </div>
-            </div>
+          <div className="csNote">
+            <b>ERW:</b> We cross-reference chemical spikes with rainfall physics to prevent sensor hallucinations.
           </div>
-        </article>
+        </div>
 
-        {/* SECTION 3 */}
-        <article className="csSection" id="portfolio">
-          <div className="csSection__head">
-            <h2 className="csH2">The Innovation Spectrum: Your Portfolio</h2>
-            <p className="csLead">
-              One engine. Infinite applications. We deploy specialized <span className="csEm">Agent Squads</span> for
-              the planet’s most critical sectors.
-            </p>
+        <div className="csCard">
+          <div className="csCard__top">
+            <span className="csMiniTag">3</span>
+            <h3 className="csH3">The Proof: Immutable Asset Ledgers</h3>
           </div>
-
-          <div className="csTableWrap">
-            <table className="csTable">
-              <thead>
-                <tr>
-                  <th>Vertical</th>
-                  <th>The Asset</th>
-                  <th>The Agents</th>
-                  <th>The Standard</th>
-                </tr>
-              </thead>
-              <tbody>
-                {portfolio.map((row) => (
-                  <tr key={row.vertical}>
-                    <td><b>{row.vertical}</b></td>
-                    <td>{row.asset}</td>
-                    <td>
-                      <ul className="csTableList">
-                        {row.agents.map((a) => <li key={a}>{a}</li>)}
-                      </ul>
-                    </td>
-                    <td>{row.standard}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <p className="csP">
+            Every verified event — whether a tree unit or a ton of rock — is minted onto a blockchain-backed ledger
+            for full audit traceability.
+          </p>
+          <div className="csPillRow">
+            <span className="csPill">Audit-ready</span>
+            <span className="csPill">Tamper-evident</span>
+            <span className="csPill">End-to-end lineage</span>
           </div>
+        </div>
+      </div>
+    </article>
 
-          <div className="csActions">
-            <button className="csBtn" type="button">Export to Sheets</button>
-            <div className="csHint">Tip: connect this to your “download CSV” or Google Sheets export API.</div>
+    {/* SECTION 4 */}
+    <article className="csSection csSection--portfolio" id="portfolio">
+      <div className="csSection__head">
+        <div className="csOverline">
+          <span className="csOverline__num">03</span>
+          <span className="csOverline__label">Deployment Spectrum</span>
+          <span className="csOverline__dot" />
+          <span className="csOverline__tag">Agent Squads</span>
+        </div>
+
+        <h2 className="csH2">The Innovation Spectrum: Your Portfolio</h2>
+        <p className="csLead">
+          One engine. Infinite applications. We deploy specialized <span className="csEm">Agent Squads</span> for
+          the planet’s most critical sectors.
+        </p>
+      </div>
+
+      <div className="csTableWrap">
+        <table className="csTable">
+          <thead>
+            <tr>
+              <th>Vertical</th>
+              <th>The Asset</th>
+              <th>The Agents</th>
+              <th>The Standard</th>
+            </tr>
+          </thead>
+          <tbody>
+            {portfolio.map((row) => (
+              <tr key={row.vertical}>
+                <td><b>{row.vertical}</b></td>
+                <td>{row.asset}</td>
+                <td>
+                  <ul className="csTableList">
+                    {row.agents.map((a) => <li key={a}>{a}</li>)}
+                  </ul>
+                </td>
+                <td>{row.standard}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+    
+    </article>
+
+    {/* SECTION 5 */}
+    <article className="csSection csSection--trust" id="trust">
+      <div className="csSection__head">
+        <div className="csOverline">
+          <span className="csOverline__num">04</span>
+          <span className="csOverline__label">Confidence Layer</span>
+          <span className="csOverline__dot" />
+          <span className="csOverline__tag">Security + Physics</span>
+        </div>
+
+        <h2 className="csH2">Social Proof & Leadership</h2>
+        <p className="csLead">
+          Built on defense-grade engineering — adhering to Accountability, Responsibility, and Sustainability.
+        </p>
+      </div>
+
+      <div className="csGrid2">
+        <div className="csCard">
+          <h3 className="csH3">Physics-Informed</h3>
+          <p className="csP">We validate AI findings against physical laws (Thermodynamics / Geology).</p>
+          <div className="csPillRow">
+            <span className="csPill">Constraint-checked</span>
+            <span className="csPill">Explainable evidence</span>
           </div>
-        </article>
+        </div>
 
-        {/* SECTION 4 */}
-        <article className="csSection" id="digital-twin">
-          <div className="csSection__head">
-            <h2 className="csH2">The “Digital Twin” Advantage</h2>
-            <p className="csLead">
-              Supply chain platforms track logistics. CloudSeals tracks the <span className="csEm">matter</span>.
-              By creating a voxel-perfect 3D Twin of physical assets — whether 6 million tons of rock or 50,000 hectares
-              of forest — we provide the ground truth layer behind the world’s most trusted ESG reports.
-            </p>
+        <div className="csCard">
+          <h3 className="csH3">Security First</h3>
+          <p className="csP">Enterprise-grade encryption, access controls, and compliance-ready architecture.</p>
+          <div className="csPillRow">
+            <span className="csPill">Encryption</span>
+            <span className="csPill">Audit logs</span>
+            <span className="csPill">Least privilege</span>
           </div>
+        </div>
+      </div>
+    </article>
 
-          <div className="csGrid3">
-            <div className="csCard csCard--highlight">
-              <h3 className="csH3">Granularity</h3>
-              <p className="csP">We split assets into micro-units (Tree Units or Metric Tons) for precision tracking.</p>
-            </div>
-            <div className="csCard csCard--highlight">
-              <h3 className="csH3">Traceability</h3>
-              <p className="csP">Full data lineage from “Sensor to Certificate”.</p>
-            </div>
-            <div className="csCard csCard--highlight">
-              <h3 className="csH3">Ground Truth</h3>
-              <p className="csP">A verification layer designed to be audited, repeatable, and defensible.</p>
-            </div>
-          </div>
-        </article>
-
-        {/* SECTION 5 */}
-        <article className="csSection" id="trust">
-          <div className="csSection__head">
-           
-            <h2 className="csH2">Social Proof & Leadership</h2>
-            <p className="csLead">
-              Built on defense-grade engineering — adhering to Accountability, Responsibility, and Sustainability.
-            </p>
-          </div>
-
-          <div className="csGrid2">
-            <div className="csCard">
-              <h3 className="csH3">Physics-Informed</h3>
-              <p className="csP">We validate AI findings against physical laws (Thermodynamics / Geology).</p>
-              <div className="csPillRow">
-                <span className="csPill">Constraint-checked</span>
-                <span className="csPill">Explainable evidence</span>
-              </div>
-            </div>
-
-            <div className="csCard">
-              <h3 className="csH3">Security First</h3>
-              <p className="csP">Enterprise-grade encryption, access controls, and compliance-ready architecture.</p>
-              <div className="csPillRow">
-                <span className="csPill">Encryption</span>
-                <span className="csPill">Audit logs</span>
-                <span className="csPill">Least privilege</span>
-              </div>
-            </div>
-          </div>
-        </article>
-
-              </div>
-
-            </section>
-
-
-
-
-
-
-
-
-
-
-
-
+  </div>
+</section>
 
 
 
@@ -464,7 +521,7 @@ export default function CarbonSight() {
             <div className="cbsAdv__ledgerImgWrap">
               <img
                 className="cbsAdv__ledgerImg"
-                src="/images/carbonsight/carbonsight-blockchain-ledger.png"
+                src="/images/carbon site/block.png"
                 alt="Blockchain ledger illustration"
                 loading="lazy"
               />
@@ -488,14 +545,8 @@ export default function CarbonSight() {
             </a>
           </div>
 
-          <div className="cbsCta__dash cbsReveal">
-            <img
-              className="cbsCta__dashImg"
-              src="/images/carbonsight/carbonsight-dashboard.png"
-              alt="MRV dashboard illustration"
-              loading="lazy"
-            />
-          </div>
+         
+          
         </div>
       </section>
     </div>

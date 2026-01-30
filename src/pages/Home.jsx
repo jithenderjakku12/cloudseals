@@ -67,7 +67,7 @@ useEffect(() => {
           <div className="vmr-media">
             <img
               className="vmr-img"
-              src="/images/target.jpeg"
+              src="/images/Home/vision.jpeg"
               alt="CloudSeals vision"
               loading="lazy"
             />
@@ -97,7 +97,7 @@ useEffect(() => {
           <div className="vmr-media">
             <img
               className="vmr-img"
-              src="/images/time.jpeg"
+              src="/images/Home/mission.jpeg"
               alt="CloudSeals mission"
               loading="lazy"
             />

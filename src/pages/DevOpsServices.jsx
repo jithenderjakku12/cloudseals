@@ -26,23 +26,50 @@ export default function DevOpsServices() {
   useScrollReveal();
   const [activeTab, setActiveTab] = useState("CI/CD");
 
-  // ✅ Your public folder images
-  const IMG = {
-    hero: "/images/devops/devops.jpg",
-    cloud: "/images/devops/cloud.jpg",
-    secure: "/images/devops/security.jpg",
-    lock: "/images/devops/lock.jpeg",
-    time: "/images/devops/time.jpeg",
-    money: "/images/devops/money.jpeg",
-    app: "/images/devops/app.jpeg",
-    steps: "/images/devops/steps.jpeg",
-    stack: "/images/devops/stack.jpeg",
-    productive: "/images/devops/productive.jpeg",
-    opportunities: "/images/devops/opportunities.jpeg",
-    target: "/images/devops/target.jpeg",
-    react: "/images/devops/react.jpeg",
-    vision: "/images/devops/vision.jpeg",
-  };
+  // ✅ FIX ESLINT: IMG object should not be re-created every render
+  const IMG = useMemo(
+    () => ({
+      devmain: "/images/devops services/devmain.png",
+
+      speed: "/images/devops services/speed.png",
+      rapid: "/images/devops services/rapid.png",
+      reliability: "/images/devops services/reliability.png",
+      scalability: "/images/devops services/scalability.png",
+      collaboration: "/images/devops services/collaboration.png",
+      security: "/images/devops services/security.png",
+
+      assessment: "/images/devops services/assessment.png",
+      pilot: "/images/devops services/p1.png",
+      infra: "/images/devops services/infra.png",
+      cicd: "/images/devops services/cicd.png",
+      observability: "/images/devops services/observability.png",
+      devsecops: "/images/devops services/dev.png",
+
+      t1: "/images/devops services/t1.png",
+      t2: "/images/devops services/t2.png",
+      devops: "/images/devops services/devsecops.jpeg",
+
+      devser: "/images/devops services/dev-ser.png",
+
+
+      safety: "/images/devops services/safety.png",
+      modern: "/images/devops services/modern.png",
+      cloud: "/images/devops services/cloud.png",
+
+
+
+      hero: "/images/devops/devops.jpg",
+      time: "/images/devops/time.jpeg",
+      stack: "/images/devops/stack.jpeg",
+      opportunities: "/images/devops/opportunities.jpeg",
+      target: "/images/devops/target.jpeg",
+      react: "/images/devops/react.jpeg",
+      vision: "/images/devops/vision.jpeg",
+
+     
+    }),
+    []
+  );
 
   const flowSteps = useMemo(
     () => [
@@ -50,53 +77,54 @@ export default function DevOpsServices() {
         no: "01",
         title: "Assessment & Planning",
         desc: "We evaluate your SDLC, environments, bottlenecks, and KPIs to build a DevOps roadmap.",
-        img: IMG.target,
+        img: IMG.assessment,
       },
       {
         no: "02",
         title: "Pilot Framework",
         desc: "We build a pilot pipeline + governance model aligned to your org and release goals.",
-        img: IMG.opportunities,
+        img: IMG.pilot,
       },
       {
         no: "03",
         title: "Infrastructure as Code",
         desc: "Standardize environments using IaC so deployments are reproducible and auditable.",
-        img: IMG.lock,
+        img: IMG.infra,
       },
       {
         no: "04",
         title: "CI/CD Pipelines",
         desc: "Automated testing, artifact versioning, approvals, and safe rollout with rollbacks.",
-        img: IMG.steps,
+        img: IMG.cicd,
       },
       {
         no: "05",
         title: "Observability",
         desc: "Metrics/logs/traces, dashboards, SLOs, and tuned alerting to reduce MTTR.",
-        img: IMG.time,
+        img: IMG.observability,
       },
       {
         no: "06",
         title: "DevSecOps",
         desc: "Security scanning, policy gates, secrets management, and compliance-ready evidence.",
-        img: IMG.secure,
+        img: IMG.devsecops,
       },
     ],
     [IMG]
   );
 
   const strategyCards = useMemo(
-    () => [
-      { img: IMG.app, title: "Speed", desc: "Accelerate delivery with automation-first workflows." },
-      { img: IMG.money, title: "Rapid Delivery", desc: "Ship more often with confidence and fewer failures." },
-      { img: IMG.cloud, title: "Reliability", desc: "Build resilient systems using SRE principles." },
-      { img: IMG.lock, title: "Scalability", desc: "Standardize infra and scale across teams/environments." },
-      { img: IMG.productive, title: "Collaboration", desc: "One shared view: dashboards, runbooks, ownership." },
-      { img: IMG.secure, title: "Security", desc: "Shift-left security with automated gates and checks." },
-    ],
-    [IMG]
-  );
+  () => [
+    { img: IMG.speed, title: "Speed", icon: "⚡", desc: "Accelerate delivery with automation-first workflows." },
+    { img: IMG.rapid, title: "Rapid Delivery", icon: "🚀", desc: "Ship more often with confidence and fewer failures." },
+    { img: IMG.reliability, title: "Reliability", icon: "🛡️", desc: "Build resilient systems using SRE principles." },
+    { img: IMG.scalability, title: "Scalability", icon: "📈", desc: "Standardize infra and scale across teams/environments." },
+    { img: IMG.collaboration, title: "Collaboration", icon: "🤝", desc: "One shared view: dashboards, runbooks, ownership." },
+    { img: IMG.security, title: "Security", icon: "🔒", desc: "Shift-left security with automated gates and checks." },
+  ],
+  [IMG]
+);
+
 
   const tools = useMemo(
     () => [
@@ -109,53 +137,52 @@ export default function DevOpsServices() {
     []
   );
 
-const deliveryTabs = useMemo(
-  () => ({
-    "CI/CD": {
-      title: "CI/CD That Teams Actually Use",
-      image: IMG.react, // ✅ change image on tab
-      points: [
-        "Branch strategy + approvals aligned to dev/uat/prod.",
-        "Build once, deploy many with versioned artifacts.",
-        "Blue/green or canary rollout with instant rollback.",
-        "Environment parity to reduce drift and incidents.",
-      ],
-    },
-    SRE: {
-      title: "SRE for Reliability at Scale",
-      image: IMG.vision, // ✅ change image on tab
-      points: [
-        "Define SLIs/SLOs for true customer experience.",
-        "Smart alert routing + deduplication to reduce noise.",
-        "Runbooks + incident workflows to reduce MTTR.",
-        "Dashboards for metrics, logs, and traces.",
-      ],
-    },
-    DevSecOps: {
-      title: "DevSecOps Without Slowing Delivery",
-      image: IMG.secure, // ✅ change image on tab
-      points: [
-        "Policy gates for vulnerabilities and misconfigurations.",
-        "Secure secrets handling inside CI/CD pipelines.",
-        "Audit-ready evidence capture and reporting.",
-        "Least-privilege IAM + automated posture checks.",
-      ],
-    },
-  }),
-  [IMG]
-);
-
+  const deliveryTabs = useMemo(
+    () => ({
+      "CI/CD": {
+        title: "CI/CD That Teams Actually Use",
+        image: IMG.t1,
+        points: [
+          "Branch strategy + approvals aligned to dev/uat/prod.",
+          "Build once, deploy many with versioned artifacts.",
+          "Blue/green or canary rollout with instant rollback.",
+          "Environment parity to reduce drift and incidents.",
+        ],
+      },
+      SRE: {
+        title: "SRE for Reliability at Scale",
+        image: IMG.t2,
+        points: [
+          "Define SLIs/SLOs for true customer experience.",
+          "Smart alert routing + deduplication to reduce noise.",
+          "Runbooks + incident workflows to reduce MTTR.",
+          "Dashboards for metrics, logs, and traces.",
+        ],
+      },
+      DevSecOps: {
+        title: "DevSecOps Without Slowing Delivery",
+        image: IMG.devops,
+        points: [
+          "Policy gates for vulnerabilities and misconfigurations.",
+          "Secure secrets handling inside CI/CD pipelines.",
+          "Audit-ready evidence capture and reporting.",
+          "Least-privilege IAM + automated posture checks.",
+        ],
+      },
+    }),
+    [IMG]
+  );
 
   const caseStudies = useMemo(
     () => [
       {
-        img: IMG.vision,
+        img: IMG.safety,
         title: "Safety Analytics Platform",
         desc: "Reduced release time from days to hours using CI/CD + controlled container deployments.",
         kpis: ["Release frequency ↑", "Rollback time ↓", "Downtime ↓"],
       },
       {
-        img: IMG.react,
+        img: IMG.modern,
         title: "Modern Web Delivery",
         desc: "Introduced preview environments and clean branching workflows for faster iteration.",
         kpis: ["Cycle time ↓", "Defects ↓", "Velocity ↑"],
@@ -182,7 +209,9 @@ const deliveryTabs = useMemo(
 
   return (
     <main className="dv-shell">
-      {/* HERO */}
+      {/* =====================
+          HERO
+      ===================== */}
       <section className="dv-hero">
         <div className="dv-hero__bg" style={{ backgroundImage: `url(${IMG.hero})` }} />
         <div className="dv-hero__overlay" />
@@ -237,18 +266,20 @@ const deliveryTabs = useMemo(
             </div>
 
             <div className="dv-heroShot">
-              <img src={IMG.cloud} alt="Cloud automation" />
+              <img src={IMG.devmain} alt="Cloud automation" />
               <div className="dv-heroShot__cap">Cloud-native automation with controlled deployment</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* INTRO */}
+      {/* =====================
+          INTRO
+      ===================== */}
       <section className="dv-sec dv-intro">
         <div className="dv-wrap dv-intro__grid">
           <div className="dv-intro__img dv-reveal">
-            <img className="dv-img" src={IMG.steps} alt="DevOps flow" />
+            <img className="dv-img" src={IMG.devser} alt="DevOps flow" />
           </div>
 
           <div className="dv-intro__text dv-reveal">
@@ -263,7 +294,9 @@ const deliveryTabs = useMemo(
         </div>
       </section>
 
-      {/* FLOW */}
+      {/* =====================
+          FLOW
+      ===================== */}
       <section id="dv-flow" className="dv-sec dv-flow">
         <div className="dv-wrap">
           <div className="dv-head dv-reveal">
@@ -288,29 +321,59 @@ const deliveryTabs = useMemo(
         </div>
       </section>
 
-      {/* STRATEGY */}
-      <section className="dv-sec dv-strategy">
-        <div className="dv-wrap">
-          <div className="dv-head dv-reveal">
-            <h2 className="dv-h2">Our DevOps Strategy</h2>
-            <p className="dv-muted">Simple, practical, and built for real-world delivery.</p>
-          </div>
+      {/* =====================
+      STRATEGY
+===================== */}
+<section className="dv-sec dv-strategy">
+  <div className="dv-wrap">
+    {/* NEW: premium heading */}
+    <div className="dv-head dv-reveal dv-strategyHead">
+      <span className="dv-eyebrow">How we deliver</span>
 
-          <div className="dv-cardGrid">
-            {strategyCards.map((c) => (
-              <article key={c.title} className="dv-card dv-reveal">
-                <div className="dv-card__img">
-                  <img src={c.img} alt={c.title} />
-                </div>
-                <h3 className="dv-h3">{c.title}</h3>
-                <p className="dv-muted">{c.desc}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <h2 className="dv-h2 dv-strategyTitle">
+        Our DevOps Strategy
+        <span className="dv-titleGlow" />
+      </h2>
 
-      {/* TOOLS */}
+      <p className="dv-strategySub">
+        Not just “tools” — we build <span className="dv-strong">repeatable delivery systems</span>:
+        speed, reliability, security, and clear ownership across teams.
+      </p>
+
+      <div className="dv-miniChips">
+        <span className="dv-chip">Automation-first</span>
+        <span className="dv-chip">SRE-grade reliability</span>
+        <span className="dv-chip">Security gates</span>
+        <span className="dv-chip">Measurable KPIs</span>
+      </div>
+    </div>
+
+    <div className="dv-cardGrid">
+     {strategyCards.map((c) => (
+  <article key={c.title} className="dv-card dv-reveal">
+    <div className="dv-card__img">
+      <img src={c.img} alt={c.title} />
+    </div>
+
+    <div className="dv-cardTitleRow">
+  <span className="dv-cardIcon" aria-hidden="true">{c.icon}</span>
+  <h3 className="dv-h3 dv-cardTitle">{c.title}</h3>
+  <span className="dv-cardBadge">Key</span>
+</div>
+
+<p className="dv-muted dv-cardDesc">{c.desc}</p>
+
+  </article>
+))}
+
+    </div>
+  </div>
+</section>
+
+
+      {/* =====================
+          TOOLS
+      ===================== */}
       <section className="dv-sec dv-tools">
         <div className="dv-wrap">
           <div className="dv-head dv-reveal">
@@ -336,86 +399,86 @@ const deliveryTabs = useMemo(
         </div>
       </section>
 
-      {/* DELIVERY */}
-   <section className="dv-sec dv-delivery">
-  <div className="dv-wrap dv-delivery__grid">
-    {/* LEFT */}
-    <div className="dv-delivery__left dv-reveal">
-      <h2 className="dv-h2">Delivery Model</h2>
-      <p className="dv-muted">
-        Choose a focus area — we execute with measurable KPIs and a clean rollout plan.
-      </p>
+      {/* =====================
+          DELIVERY
+      ===================== */}
+      <section className="dv-sec dv-delivery">
+        <div className="dv-wrap dv-delivery__grid">
+          <div className="dv-delivery__left dv-reveal">
+            <h2 className="dv-h2">Delivery Model</h2>
+            <p className="dv-muted">
+              Choose a focus area — we execute with measurable KPIs and a clean rollout plan.
+            </p>
 
-      <div className="dv-tabs">
-        {Object.keys(deliveryTabs).map((k) => (
-          <button
-            key={k}
-            type="button"
-            className={`dv-tabBtn ${activeTab === k ? "dv-tabBtn--active" : ""}`}
-            onClick={() => setActiveTab(k)}
-          >
-            <span className="dv-tabBtn__dot" />
-            {k}
-          </button>
-        ))}
-      </div>
+            <div className="dv-tabs">
+              {Object.keys(deliveryTabs).map((k) => (
+                <button
+                  key={k}
+                  type="button"
+                  className={`dv-tabBtn ${activeTab === k ? "dv-tabBtn--active" : ""}`}
+                  onClick={() => setActiveTab(k)}
+                >
+                  <span className="dv-tabBtn__dot" />
+                  {k}
+                </button>
+              ))}
+            </div>
 
-      <div className="dv-panel">
-        <div className="dv-panel__head">
-          <h3 className="dv-h3">{deliveryTabs[activeTab].title}</h3>
-          <span className="dv-panel__badge">Recommended</span>
-        </div>
+            <div className="dv-panel">
+              <div className="dv-panel__head">
+                <h3 className="dv-h3">{deliveryTabs[activeTab].title}</h3>
+                <span className="dv-panel__badge">Recommended</span>
+              </div>
 
-        <ul className="dv-points">
-          {deliveryTabs[activeTab].points.map((p, idx) => (
-            <li key={`${activeTab}-${idx}`} className="dv-point">
-              <span className="dv-point__icon">✓</span>
-              <span className="dv-point__text">{p}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-
-    {/* RIGHT (Image switches) */}
-    <div className="dv-delivery__right dv-reveal">
-      <div className="dv-preview">
-        <div className="dv-preview__top">
-          <span className="dv-preview__pill">{activeTab}</span>
-          <span className="dv-preview__meta">Implementation Preview</span>
-        </div>
-
-        <div className="dv-preview__imgWrap">
-          {/* ✅ key forces smooth fade on change */}
-          <img
-            key={activeTab}
-            className="dv-preview__img"
-            src={deliveryTabs[activeTab].image}
-            alt={`${activeTab} preview`}
-          />
-        </div>
-
-        <div className="dv-preview__footer">
-          <div className="dv-miniStat">
-            <strong>Faster</strong>
-            <span>Delivery</span>
+              <ul className="dv-points">
+                {deliveryTabs[activeTab].points.map((p, idx) => (
+                  <li key={`${activeTab}-${idx}`} className="dv-point">
+                    <span className="dv-point__icon">✓</span>
+                    <span className="dv-point__text">{p}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="dv-miniStat">
-            <strong>Safer</strong>
-            <span>Releases</span>
-          </div>
-          <div className="dv-miniStat">
-            <strong>Clear</strong>
-            <span>KPIs</span>
+
+          <div className="dv-delivery__right dv-reveal">
+            <div className="dv-preview">
+              <div className="dv-preview__top">
+                <span className="dv-preview__pill">{activeTab}</span>
+                <span className="dv-preview__meta">Implementation Preview</span>
+              </div>
+
+              <div className="dv-preview__imgWrap">
+                <img
+                  key={activeTab}
+                  className="dv-preview__img"
+                  src={deliveryTabs[activeTab].image}
+                  alt={`${activeTab} preview`}
+                />
+              </div>
+
+              <div className="dv-preview__footer">
+                <div className="dv-miniStat">
+                  <strong>Faster</strong>
+                  <span>Delivery</span>
+                </div>
+                <div className="dv-miniStat">
+                  <strong>Safer</strong>
+                  <span>Releases</span>
+                </div>
+                <div className="dv-miniStat">
+                  <strong>Clear</strong>
+                  <span>KPIs</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
-
-      {/* CASE STUDIES */}
+      {/* =====================
+          CASE STUDIES
+      ===================== */}
       <section className="dv-sec dv-cases">
         <div className="dv-wrap">
           <div className="dv-head dv-reveal">
@@ -432,9 +495,7 @@ const deliveryTabs = useMemo(
                   <p className="dv-muted">{c.desc}</p>
                   <div className="dv-pillRow">
                     {c.kpis.map((k) => (
-                      <span className="dv-pill" key={k}>
-                        {k}
-                      </span>
+                      <span className="dv-pill" key={k}>{k}</span>
                     ))}
                   </div>
                 </div>
@@ -444,7 +505,9 @@ const deliveryTabs = useMemo(
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* =====================
+          FAQ
+      ===================== */}
       <section className="dv-sec dv-faq">
         <div className="dv-wrap">
           <div className="dv-head dv-reveal">
@@ -463,7 +526,9 @@ const deliveryTabs = useMemo(
         </div>
       </section>
 
-      {/* CTA */}
+      {/* =====================
+          CTA
+      ===================== */}
       <section id="dv-contact" className="dv-sec dv-cta">
         <div className="dv-wrap dv-ctaBox dv-reveal">
           <div className="dv-ctaBox__left">

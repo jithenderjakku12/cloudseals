@@ -240,6 +240,7 @@
   color: #fff;
   font-size: 22px;
   cursor: pointer;
+  margin-left:210px;
 }
 
 /* -------------------------
@@ -494,4 +495,240 @@
   height: 2px;
   border-radius: 999px;
   background: rgba(255, 204, 102, 0.95);
+}
+/* =========================================================
+   MOBILE ADD-ON ONLY (Do not change desktop)
+   - Works with Header.jsx classes: .m-open and .m-subopen
+   - Fixes dropdown alignment + click-to-open behavior
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+  /* Make header margins smaller on mobile */
+  .header{
+    margin: 10px 12px;
+    border-radius: 14px;
+  }
+
+  /* Nav panel should sit inside header width neatly */
+  .nav{
+    border-radius: 14px;
+    overflow: hidden;
+    padding-bottom: 14px;
+  }
+
+  /* Make each item full width for tapping */
+  .nav-link,
+  .dropbtn{
+    width: calc(100% - 22px);
+    margin: 0 11px;
+    text-align: left;
+    padding: 12px 12px;
+    border-radius: 12px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.10);
+  }
+
+  /* spacing */
+  .dropdown{
+    width: 100%;
+    display: block;
+  }
+
+  /* -------------------------
+     Mobile dropdown: CLOSED by default
+     (override your current "always visible" rule)
+  ------------------------- */
+  .dropdown .dropdown-content{
+    display: none;           /* ✅ closed */
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    background: transparent;
+    padding: 8px 0 0;
+    transform: none;
+    min-width: auto;
+  }
+
+  /* ✅ OPEN when Header.jsx adds .m-open */
+  .dropdown.m-open .dropdown-content{
+    display: block;
+  }
+
+  /* dropdown links in mobile */
+  .dropdown-content a{
+    width: calc(100% - 44px);
+    margin: 6px 22px 0;
+    padding: 12px 12px;
+    border-radius: 12px;
+    background: rgba(0,0,0,.20);
+    border: 1px solid rgba(255,255,255,.10);
+  }
+
+  .dropdown-content a:hover{
+    transform: none; /* avoid jump on mobile */
+  }
+
+  /* -------------------------
+     Cloud submenu on mobile:
+     convert from side-flyout to inline accordion
+  ------------------------- */
+  .submenu{
+    position: static;
+    left: auto;
+    top: auto;
+    min-width: auto;
+    padding: 8px 0 0;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    transform: none;
+
+    display: none;     /* ✅ closed */
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* ✅ OPEN submenu when .m-subopen present */
+  .has-submenu.m-subopen .submenu{
+    display: block;
+  }
+
+  /* submenu links */
+  .submenu a{
+    width: calc(100% - 66px);
+    margin: 6px 33px 0;
+    padding: 11px 12px;
+    border-radius: 12px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.10);
+  }
+
+  .submenu a:hover{
+    transform: none;
+  }
+
+  /* arrow rotate effect (optional) */
+  .dropdown.m-open .dropbtn,
+  .has-submenu.m-subopen .dropdown-link{
+    border-color: rgba(90,174,255,.35);
+    background: rgba(90,174,255,.08);
+  }
+
+  /* Search bar full width in mobile */
+  .nav-search{
+    width: calc(100% - 22px);
+    margin: 0 11px;
+    justify-content: space-between;
+  }
+
+  .nav-search.open .search-input{
+    width: 100%;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-search:not(.open) .search-input{
+    width: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+/* =========================================================
+   MOBILE FIX ONLY
+   - no side move on dropdown open
+   - add overlay close
+   ========================================================= */
+@media (max-width: 1000px) {
+
+  /* ✅ overlay to close on outside click */
+  .nav-overlay{
+    display: none;
+  }
+  .nav-overlay.show{
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(0,0,0,.45);
+    backdrop-filter: blur(2px);
+  }
+
+  /* keep header above overlay */
+  .header{ z-index: 1000; }
+
+  /* prevent side shifting from hover transforms in mobile */
+  .dropdown-content a,
+  .submenu a{
+    transform: none !important;
+  }
+  .dropdown-content a:hover,
+  .submenu a:hover{
+    transform: none !important;
+  }
+
+  /* ✅ IMPORTANT: mobile dropdown should NOT use desktop translateX(-50%) */
+  .dropdown .dropdown-content,
+  .dropdown.active .dropdown-content{
+    left: auto !important;
+    transform: none !important;
+  }
+
+  /* ✅ CLOSED by default */
+  .dropdown .dropdown-content{
+    display: none;
+  }
+
+  /* ✅ OPEN only when .m-open present */
+  .dropdown.m-open .dropdown-content{
+    display: block;
+  }
+
+  /* Cloud submenu: inline accordion */
+  .submenu{
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    display: none; /* closed */
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 8px 0 0 !important;
+  }
+
+  .has-submenu.m-subopen .submenu{
+    display: block;
+  }
+
+  /* ✅ make menu items stable width */
+  .nav a,
+  .dropbtn{
+    width: calc(100% - 26px);
+    margin: 0 13px;
+  }
+
+  /* dropdown links stable and no sliding */
+  .dropdown-content a{
+    width: calc(100% - 50px);
+    margin: 6px 25px 0;
+  }
+
+  /* submenu links indent */
+  .submenu a{
+    width: calc(100% - 76px);
+    margin: 6px 38px 0;
+  }
+
+  /* make close icon button a bit nicer */
+  .nav-toggle{
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.14);
+  }
 }

@@ -192,7 +192,7 @@ export default function Complisight() {
             <div className="csHero__mediaFrame">
               <img
                 className="csHero__img"
-                src="/images/complisight/images/complisight-hero.png"
+                src="/images/complisite/PPE-detection.webp"
                 alt="Complisight hero visual"
               />
               <div className="csBadge">
@@ -315,7 +315,7 @@ export default function Complisight() {
           <div className="csSplit__media" data-reveal>
             <img
               className="csMediaImg"
-              src="/images/complisight/images/complisight-industries4.png"
+              src="/images/complisite/saftey.jpeg"
               alt="Industries 4.0 safety layer"
             />
           </div>
@@ -360,7 +360,7 @@ export default function Complisight() {
           <div className="csSplit__media" data-reveal>
             <img
               className="csMediaImg"
-              src="/images/complisight/images/complisight-dashboard.png"
+              src="/images/complisite/advantage.jpeg"
               alt="Complisight dashboard mock"
             />
           </div>

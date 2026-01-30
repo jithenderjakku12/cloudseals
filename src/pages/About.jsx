@@ -180,7 +180,7 @@ const _toggleDropdown = (e, id) => {
     </div>
 
     <div className="aboutPage__highlightRow">
-      <img className="aboutPage__highlightImg" src="/images/stocks.jpeg" alt="AI & Data" />
+      <img className="aboutPage__highlightImg" src="/images/About us/Data.jpeg" alt="AI & Data" />
       <div className="aboutPage__highlightText">
         <h3 className="aboutPage__h3">Data-Driven Innovation</h3>
         <p className="aboutPage__p">
@@ -191,7 +191,7 @@ const _toggleDropdown = (e, id) => {
     </div>
 
     <div className="aboutPage__highlightRow aboutPage__highlightRowReverse">
-      <img className="aboutPage__highlightImg" src="/images/stack.jpeg" alt="Cloud Security" />
+      <img className="aboutPage__highlightImg" src="/images/About us/safe cloud.jpeg" alt="Cloud Security" />
       <div className="aboutPage__highlightText">
         <h3 className="aboutPage__h3">Secure Cloud Solutions</h3>
         <p className="aboutPage__p">
@@ -202,7 +202,7 @@ const _toggleDropdown = (e, id) => {
     </div>
 
     <div className="aboutPage__highlightRow">
-      <img className="aboutPage__highlightImg" src="/images/secure.jpeg" alt="Business Growth" />
+      <img className="aboutPage__highlightImg" src="/images/About us/growth.jpeg" alt="Business Growth" />
       <div className="aboutPage__highlightText">
         <h3 className="aboutPage__h3">Business Growth &amp; Impact</h3>
         <p className="aboutPage__p">
@@ -260,16 +260,39 @@ const _toggleDropdown = (e, id) => {
     <article className="aboutPage__teamCard">
       <img
         className="aboutPage__teamImg"
-        src="/images/About/himanshu.png"
-        alt="Himanshu Gupta"
+        src="/images/SRIDHAR.jpg"
+        alt="Mr. Sridhar Gopi"
       />
-      <h3 className="aboutPage__teamName">Himanshu Gupta</h3>
-      <span className="aboutPage__role">Chief Technology Officer</span>
+      <h3 className="aboutPage__teamName">Sridhar Gopi</h3>
+      <span className="aboutPage__role">GTM Director</span>
       <p className="aboutPage__pSmall">
-        Seasoned technology leader specializing in cloud architectures, scalable systems,
-        and secure platforms aligned with long-term business growth.
+     Seasoned industry leader with 30+ years of experience across Banking, Financial Services, 
+     Insurance, and Technology, with strong global exposure and a proven track record in driving innovation and transformation.
       </p>
     </article>
+
+  </div>
+</section>
+
+
+
+
+
+
+<section className="aboutPage__team">
+  {/* NEW HEADING BLOCK */}
+  <div className="aboutPage__teamHead">
+    <div className="aboutPage__teamKicker">CloudSeals Advisory Board</div>
+    <h2 className="aboutPage__teamTitle">Meet Our Advisory Team</h2>
+    <p className="aboutPage__teamSub">
+      Seasoned advisors bringing deep expertise across cloud, cybersecurity, compliance, enterprise delivery,
+      and go-to-market strategy — guiding CloudSeals as we build secure, scalable platforms for modern enterprises.
+    </p>
+  </div>
+
+
+  <div className="aboutPage__teamGrid">
+ 
 
     <article className="aboutPage__teamCard">
       <img
@@ -302,14 +325,14 @@ const _toggleDropdown = (e, id) => {
      <article className="aboutPage__teamCard">
       <img
         className="aboutPage__teamImg"
-        src="/images/SRIDHAR.jpg"
+        src="/images/BILL.jpg"
         alt="Mr. Sridhar Gopi"
       />
-      <h3 className="aboutPage__teamName">Sridhar Gopi</h3>
-      <span className="aboutPage__role">GTM Director</span>
+      <h3 className="aboutPage__teamName">Bill Weathersby</h3>
+      <span className="aboutPage__role">US GTM</span>
       <p className="aboutPage__pSmall">
-     Seasoned industry leader with 30+ years of experience across Banking, Financial Services, 
-     Insurance, and Technology, with strong global exposure and a proven track record in driving innovation and transformation.
+     Bill is an 8-time Founder, Investor and former Global Executive with over 40+ years in both private equity backed and publicly traded high growth companies. He has
+      successfully led over 6 Founder-led companies to over $20M in Revenue, over $100M of Fundraising and help generate over $500M of value in M&A.
       </p>
     </article>
   </div>

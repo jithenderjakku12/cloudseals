@@ -270,214 +270,754 @@
   padding: 0 6px 2px;
 }
 
-/* -------------------------
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================
    5) INVESTOR NARRATIVE (cs*)
-   (These sections are inside your CarbonSight page)
-   ------------------------- */
-.csPage{
-  /* keep same background, but soften and align spacing */
-  color: var(--cbs-text);
-  background: transparent;
+   CarbonSight Page — Premium + Varied Styles
+   ✅ More attractive
+   ✅ Each section/card looks different (no copy-paste feel)
+   ✅ Works with your existing class names
+========================================================= */
+
+/* =========================================================
+   FULL-WIDTH WEBSITE SECTIONS (each section unique)
+   Uses "full-bleed" trick while keeping content aligned
+   ========================================================= */
+
+:root{
+  --cs-bg0:#050714;
+  --cs-bg1:#070b19;
+  --cs-bg2:#0b1633;
+
+  --cs-text:#eaf2ff;
+  --cs-muted:rgba(234,242,255,.74);
+  --cs-line:rgba(255,255,255,.12);
+
+  --cs-r1:18px;
+  --cs-r2:28px;
+
+  --cs-shadow: 0 24px 90px rgba(0,0,0,.50);
+  --cs-shadow2: 0 16px 46px rgba(0,0,0,.34);
+
+  --cs-ease:cubic-bezier(.2,.8,.2,1);
 }
 
-.csContainer{
-  width: min(1160px, 92%);
-  margin: 0 auto;
-  padding: 40px 0 40px;
+
+
+
+
+/* =========================
+   HERO (Image LEFT + Content RIGHT)
+   Beautiful premium styling
+   ========================= */
+
+.csHero{
+  display:grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap:38px;
+  align-items:center;
+  margin-bottom: 50px;
+   
+  padding:34px 30px;
+  border-radius: 28px;
+  border:1px solid rgba(255,255,255,.14);
+  background:
+    radial-gradient(980px 560px at 15% 10%, rgba(79,200,255,.20), transparent 60%),
+    radial-gradient(900px 560px at 85% 30%, rgba(178,110,255,.18), transparent 55%),
+    radial-gradient(820px 520px at 50% 90%, rgba(255,122,78,.12), transparent 62%),
+    linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.03));
+  box-shadow: 0 22px 80px rgba(0,0,0,.45);
+  position:relative;
+  overflow:hidden;
 }
 
-.csSection{
-  margin-top: 18px;
-  border: 1px solid var(--cbs-stroke2);
-  border-radius: calc(var(--r) + 6px);
-  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-  box-shadow: 0 14px 36px rgba(0,0,0,.24);
-  padding: 22px;
-  overflow: hidden;
-  position: relative;
-}
-.csSection::before{
+.csHero::after{
   content:"";
   position:absolute;
   inset:-2px;
-  background:
-    radial-gradient(760px 280px at 10% 0%, rgba(79,200,255,.12), transparent 60%),
-    radial-gradient(760px 280px at 90% 70%, rgba(178,110,255,.10), transparent 60%);
-  opacity:.9;
+  border-radius:inherit;
+  background: linear-gradient(90deg, rgba(79,200,255,.22), rgba(178,110,255,.16), rgba(255,122,78,.14));
+  filter: blur(26px);
+  opacity:.30;
   pointer-events:none;
 }
-.csSection > *{ position:relative; }
 
-.csH2{
-  margin: 0 0 10px;
-  font-size: clamp(20px, 2.3vw, 30px);
-  letter-spacing:-0.01em;
+
+
+.csHero__content{
+  position:relative;
+  z-index:2;
 }
-.csLead{
-  margin: 0;
-  color: var(--cbs-muted);
-  line-height: 1.7;
+
+.csHero__media{
+  position:relative;
+  z-index:2;
 }
+
+.csHero__frame{
+  border-radius: 26px;
+  border:1px solid rgba(255,255,255,.14);
+  overflow:hidden;
+  position:relative;
+  background: rgba(0,0,0,.25);
+  box-shadow: 0 18px 60px rgba(0,0,0,.45);
+}
+
+.csHero__img{
+  width:100%;
+  height: 380px;
+  object-fit: cover;
+  display:block;
+  transform: scale(1.03);
+  transition: transform 520ms cubic-bezier(.2,.8,.2,1);
+}
+
+.csHero__frame:hover .csHero__img{
+  transform: scale(1.08);
+}
+
+.csHero__glow{
+  position:absolute;
+  inset:-30px;
+  background:
+    radial-gradient(560px 420px at 30% 20%, rgba(79,200,255,.22), transparent 60%),
+    radial-gradient(560px 420px at 80% 60%, rgba(178,110,255,.18), transparent 62%),
+    radial-gradient(560px 420px at 70% 95%, rgba(255,122,78,.14), transparent 66%);
+  filter: blur(14px);
+  opacity:.55;
+  pointer-events:none;
+}
+
+.csHero__scan{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(120deg, transparent 0%, rgba(255,255,255,.08) 18%, transparent 35%);
+  transform: translateX(-120%);
+  animation: csScan 3.2s linear infinite;
+  opacity:.55;
+  pointer-events:none;
+}
+
+.csHero__noise{
+  position:absolute;
+  inset:0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+  opacity:.08;
+  mix-blend-mode: overlay;
+  pointer-events:none;
+}
+
+@keyframes csScan{
+  0%{ transform: translateX(-120%); }
+  100%{ transform: translateX(120%); }
+}
+
+/* Kicker pill */
+.csKicker--pill{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 12px;
+  border-radius: 999px;
+  border:1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.07);
+  backdrop-filter: blur(12px);
+  position:relative;
+  overflow:hidden;
+}
+
+.csKicker__shine{
+  position:absolute;
+  inset:0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.18) 18%, transparent 36%);
+  transform: translateX(-120%);
+  animation: csShine 3.8s linear infinite;
+  opacity:.55;
+  pointer-events:none;
+}
+
+@keyframes csShine{
+  0%{ transform: translateX(-120%); }
+  100%{ transform: translateX(120%); }
+}
+
+/* Tags */
+.csTags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:16px;
+}
+
+.csTag{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  border-radius: 999px;
+  border:1px solid rgba(255,255,255,.16);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 14px 34px rgba(0,0,0,.26);
+  overflow:hidden;
+  cursor:default;
+  transform: translateY(0);
+  transition: transform 240ms cubic-bezier(.2,.8,.2,1), filter 240ms cubic-bezier(.2,.8,.2,1);
+}
+
+.csTag:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
+.csTag__icon{
+  width:26px;
+  height:26px;
+  display:grid;
+  place-items:center;
+  border-radius: 10px;
+  background: rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.14);
+  font-size:13px;
+}
+
+.csTag__text{
+  font-size:13.5px;
+  color: rgba(234,242,255,.95);
+  letter-spacing:.01em;
+  font-weight:650;
+}
+
+.csTag__shine{
+  position:absolute;
+  inset:0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.16) 20%, transparent 40%);
+  transform: translateX(-120%);
+  animation: csShine 4.6s linear infinite;
+  opacity:.5;
+  pointer-events:none;
+}
+
+.csTag--a{
+  background: linear-gradient(90deg, rgba(79,200,255,.22), rgba(79,200,255,.06));
+}
+.csTag--b{
+  background: linear-gradient(90deg, rgba(178,110,255,.22), rgba(178,110,255,.06));
+}
+.csTag--c{
+  background: linear-gradient(90deg, rgba(255,122,78,.22), rgba(255,122,78,.06));
+}
+
+/* Meta cards row */
+.csHero__meta{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap:12px;
+  margin-top:18px;
+}
+
+.csMetaCard{
+  padding:12px 12px;
+  border-radius: 18px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 30px rgba(0,0,0,.22);
+}
+
+.csMetaCard__title{
+  font-size:13px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color: rgba(234,242,255,.88);
+}
+
+.csMetaCard__sub{
+  margin-top:6px;
+  font-size:13.5px;
+  color: rgba(234,242,255,.72);
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .csHero{
+    grid-template-columns: 1fr;
+    padding:22px 18px;
+  }
+  .csHero__img{ height: 260px; }
+  .csHero__meta{ grid-template-columns: 1fr; }
+}
+
+
+
+
+/* Keep container normal */
+.csContainer{
+  width:min(1180px, 92%);
+  margin:0 auto;
+ 
+}
+
+/* ---------- FULL-WIDTH SECTION WRAPPER ---------- */
+/* Apply this to your existing articles: csSection already exists */
+.csSection{
+  /* full-bleed across viewport */
+  width:100vw;
+  margin-left:calc(50% - 50vw);
+  margin-right:calc(50% - 50vw);
+
+  /* spacing */
+  padding:72px 0;
+
+  position:relative;
+  overflow:hidden;
+}
+
+/* Inner content alignment inside full width */
+.csSection > .csSection__head,
+.csSection > .csGrid2,
+.csSection > .csGrid3,
+.csSection > .csTableWrap,
+.csSection > .csActions{
+  width:min(1180px, 92%);
+  margin-left:auto;
+  margin-right:auto;
+  position:relative;
+  z-index:2;
+}
+
+/* Section top/bottom separators */
+.csSection::before,
+.csSection::after{
+  content:"";
+  position:absolute;
+  left:0; right:0;
+  height:1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+  opacity:.7;
+  pointer-events:none;
+}
+.csSection::before{ top:0; }
+.csSection::after{ bottom:0; }
+
+/* ---------- FEATURED HERO HEAD (kept inside container) ---------- */
+.csSection__head--featured{
+  padding:34px 30px;
+  border-radius: var(--cs-r2);
+  border:1px solid rgba(255,255,255,.14);
+  background:
+    radial-gradient(980px 560px at 15% 10%, rgba(79,200,255,.20), transparent 60%),
+    radial-gradient(900px 560px at 85% 30%, rgba(178,110,255,.18), transparent 55%),
+    radial-gradient(820px 520px at 50% 90%, rgba(255,122,78,.12), transparent 62%),
+    linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.03));
+  box-shadow: var(--cs-shadow);
+  position:relative;
+  overflow:hidden;
+}
+
+.csSection__kicker{
+  display:flex; align-items:center; gap:10px;
+  font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+  color: rgba(234,242,255,.74);
+  margin-bottom:10px;
+}
+.csKdot{
+  width:10px; height:10px; border-radius:99px;
+  background: linear-gradient(90deg, rgba(79,200,255,1), rgba(178,110,255,1));
+  box-shadow: 0 0 22px rgba(79,200,255,.38);
+}
+
+.csH2{ font-size:34px; line-height:1.14; margin:0 0 10px; letter-spacing:-.02em; }
+.csH2--featured{ font-size:46px; }
+.csH2__grad{
+  background: linear-gradient(90deg, #7bd6ff, #b26eff, #ff7a4e);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.csLead{ color: var(--cs-muted); font-size:16px; line-height:1.75; margin:0; }
+.csLead--featured{ font-size:17px; margin-top:10px; }
+.csEm{ color:#fff; font-weight:650; }
+.csQuote{ color: rgba(255,255,255,.9); font-weight:650; }
+
+.csSection__chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+.csChip{
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.08);
+  font-size:13px;
+  color: rgba(234,242,255,.92);
+  backdrop-filter: blur(12px);
+  transition: transform 240ms var(--cs-ease), background 240ms var(--cs-ease);
+}
+.csChip:hover{ transform: translateY(-2px); background: rgba(255,255,255,.12); }
+
+/* ---------- OVERLINE ---------- */
+.csSection__head{ margin-bottom:20px; }
+
+.csOverline{
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:10px; flex-wrap:wrap;
+}
+.csOverline__num{
+  font-size:12px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  padding:7px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.08);
+  color: rgba(234,242,255,.92);
+  backdrop-filter: blur(10px);
+}
+.csOverline__label{
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color: rgba(234,242,255,.72);
+}
+.csOverline__dot{
+  width:7px; height:7px; border-radius:99px;
+  box-shadow: 0 0 18px rgba(255,255,255,.14);
+}
+.csOverline__tag{
+  font-size:12px;
+  color: rgba(234,242,255,.92);
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+  backdrop-filter: blur(10px);
+}
+
+/* =========================================================
+   SECTION THEMES (unique full-width backgrounds)
+   ========================================================= */
+
+/* SECTION 2: Problem — cinematic warm strip */
+.csSection--problem{
+  background:
+    radial-gradient(900px 520px at 15% 20%, rgba(255,122,78,.22), transparent 60%),
+    radial-gradient(900px 520px at 75% 10%, rgba(255,60,130,.18), transparent 58%),
+    radial-gradient(900px 520px at 80% 90%, rgba(255,210,120,.10), transparent 65%),
+    linear-gradient(180deg, rgba(20,8,18,.92), rgba(10,10,18,.92));
+}
+.csSection--problem .csOverline__dot{
+  background: linear-gradient(90deg, rgba(255,122,78,.95), rgba(255,60,130,.85));
+}
+.csSection--problem::marker{ content:""; }
+.csSection--problem .csSection__head{
+  padding:18px 0 0;
+}
+
+/* add a subtle diagonal texture */
+.csSection--problem .csSection__head::after{
+  content:"";
+  position:absolute;
+  inset:-40px -20px auto -20px;
+  height:220px;
+  background:
+    repeating-linear-gradient(135deg,
+      rgba(255,122,78,.12) 0,
+      rgba(255,122,78,.12) 1px,
+      transparent 1px,
+      transparent 14px
+    );
+  opacity:.18;
+  pointer-events:none;
+  border-radius:24px;
+}
+
+/* SECTION 3:כ: Tech — cool cyber grid */
+.csSection--tech{
+  background:
+    radial-gradient(980px 620px at 20% 10%, rgba(79,200,255,.22), transparent 62%),
+    radial-gradient(880px 560px at 90% 30%, rgba(178,110,255,.18), transparent 60%),
+    linear-gradient(180deg, rgba(6,10,26,.94), rgba(6,12,22,.94));
+}
+.csSection--tech .csOverline__dot{
+  background: linear-gradient(90deg, rgba(79,200,255,.95), rgba(178,110,255,.85));
+}
+.csSection--tech::selection{ background: rgba(79,200,255,.22); }
+
+/* cyber grid overlay */
+.csSection--tech .csGrid3::before{
+  content:"";
+  position:absolute;
+  inset:-40px;
+  background:
+    linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(closest-side, rgba(0,0,0,.85), transparent 70%);
+  opacity:.22;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* SECTION 4: Portfolio — bright product panel */
+.csSection--portfolio{
+  background:
+    radial-gradient(980px 620px at 80% 10%, rgba(178,110,255,.24), transparent 62%),
+    radial-gradient(900px 560px at 20% 55%, rgba(79,200,255,.14), transparent 62%),
+    radial-gradient(900px 560px at 55% 100%, rgba(255,122,78,.10), transparent 66%),
+    linear-gradient(180deg, rgba(8,10,26,.92), rgba(8,14,30,.92));
+}
+.csSection--portfolio .csOverline__dot{
+  background: linear-gradient(90deg, rgba(178,110,255,.95), rgba(79,200,255,.85));
+}
+
+/* SECTION 5: Trust — calm green assurance band */
+.csSection--trust{
+  background:
+    radial-gradient(980px 620px at 30% 0%, rgba(60,255,190,.18), transparent 62%),
+    radial-gradient(900px 560px at 90% 30%, rgba(79,200,255,.14), transparent 62%),
+    linear-gradient(180deg, rgba(6,18,18,.94), rgba(6,12,20,.94));
+}
+.csSection--trust .csOverline__dot{
+  background: linear-gradient(90deg, rgba(60,255,190,.95), rgba(79,200,255,.85));
+}
+
+/* =========================================================
+   CONTENT BLOCKS (cards, grids, table) — website polish
+   ========================================================= */
 
 .csGrid2{
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap: 12px;
-  margin-top: 14px;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:18px;
 }
+
 .csGrid3{
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0,1fr));
-  gap: 12px;
-  margin-top: 14px;
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:18px;
+  position:relative;
 }
 
 .csCard{
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: var(--r);
-  background: rgba(0,0,0,.18);
-  padding: 16px;
-  backdrop-filter: blur(10px);
+  padding:20px 18px;
+  border-radius: var(--cs-r1);
+  border:1px solid rgba(255,255,255,.14);
+  background:
+    radial-gradient(700px 420px at 10% 0%, rgba(255,255,255,.08), transparent 60%),
+    rgba(255,255,255,.06);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 12px 34px rgba(0,0,0,.26);
+  transition: transform 260ms var(--cs-ease), border-color 260ms var(--cs-ease), background 260ms var(--cs-ease);
 }
+.csCard:hover{
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,.22);
+  background: rgba(255,255,255,.08);
+}
+
 .csCard--danger{
+  border-color: rgba(255,122,78,.36);
   background:
-    radial-gradient(520px 240px at 10% 0%, rgba(255,122,78,.18), transparent 55%),
-    rgba(0,0,0,.18);
-}
-.csCard--highlight{
-  background:
-    radial-gradient(560px 260px at 10% 0%, rgba(79,200,255,.16), transparent 55%),
-    rgba(0,0,0,.18);
+    radial-gradient(700px 420px at 20% 0%, rgba(255,122,78,.16), transparent 60%),
+    rgba(255,255,255,.05);
 }
 
-.csCard__top{
-  display:flex;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
+.csCard__top{ display:flex; align-items:center; gap:10px; margin-bottom:10px; }
 .csMiniTag{
-  width: 26px;
-  height: 26px;
-  border-radius: 9px;
-  display: grid;
-  place-items: center;
-  font-weight: 900;
-  border: 1px solid rgba(255,255,255,.14);
-  background: linear-gradient(180deg, rgba(79,200,255,.22), rgba(178,110,255,.16));
+  width:30px; height:30px;
+  display:grid; place-items:center;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.08);
+  font-size:13px;
+  color: rgba(234,242,255,.95);
 }
 
-.csH3{ margin: 0 0 8px; font-size: 16px; }
-.csP{ margin: 0; color: var(--cbs-muted); line-height: 1.6; }
+.csH3{ font-size:18px; margin:0; letter-spacing:-.01em; }
+
+.csP{
+  margin:10px 0 0;
+  color: rgba(234,242,255,.80);
+  line-height:1.7;
+  font-size:14.8px;
+}
 
 .csList{
-  margin: 10px 0 0;
-  padding-left: 18px;
-  color: var(--cbs-muted);
-  line-height: 1.6;
+  margin:10px 0 0;
+  padding-left:18px;
+  color: rgba(234,242,255,.84);
+  line-height:1.75;
+  font-size:14.8px;
 }
 
-.csEm{
-  background: linear-gradient(90deg, rgba(79,200,255,.26), rgba(178,110,255,.20));
-  border: 1px solid rgba(255,255,255,.12);
-  padding: 2px 8px;
-  border-radius: 999px;
-}
-.csQuote{ color: var(--cbs-text); font-weight: 800; }
-
-.csPillRow{ display:flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-.csPill{
-  font-size: 12px;
-  padding: 6px 10px;
-  border: 1px solid rgba(255,255,255,.14);
-  border-radius: 999px;
+.csNote{
+  margin-top:10px;
+  padding:12px 12px;
+  border-radius: 14px;
+  border:1px solid rgba(255,255,255,.14);
   background: rgba(255,255,255,.06);
+  color: rgba(234,242,255,.84);
+  line-height:1.65;
+  font-size:14.2px;
+}
+
+/* Pills */
+.csPillRow{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+.csPill{
+  padding:7px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.07);
+  font-size:12.5px;
+  color: rgba(234,242,255,.92);
+}
+
+/* Callout */
+.csCallout{
+  
+  margin: 36px 180px;
+  padding:14px 14px;
+  border-radius: var(--cs-r1);
+  border:1px solid rgba(255,255,255,.16);
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+.csCallout__icon{
+  width:36px; height:36px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.10);
+}
+.csCallout__title{
+  font-size:14px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color: rgba(234,242,255,.84);
+}
+.csCallout__text{
+  margin-top:4px;
+  font-size:14.8px;
+  color: rgba(234,242,255,.92);
+}
+
+/* Table */
+.csTableWrap{
+  overflow:auto;
+  border-radius: var(--cs-r1);
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.05);
+  box-shadow: 0 14px 40px rgba(0,0,0,.26);
+}
+
+.csTable{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  min-width: 860px;
+}
+
+.csTable th,
+.csTable td{
+  padding:14px 14px;
+  border-bottom:1px solid rgba(255,255,255,.10);
+  vertical-align:top;
+}
+
+.csTable th{
+  position:sticky;
+  top:0;
+  background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+  backdrop-filter: blur(12px);
+  text-align:left;
+  font-size:12px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
   color: rgba(234,242,255,.78);
 }
 
-.csCallout{
-  margin-top: 14px;
-  display:flex;
-  gap: 12px;
-  align-items: center;
-  border: 1px solid rgba(79,200,255,.20);
-  border-radius: var(--r);
-  padding: 14px;
-  background:
-    radial-gradient(650px 240px at 10% 0%, rgba(79,200,255,.14), transparent 60%),
-    rgba(0,0,0,.18);
-}
-.csCallout__icon{
-  width: 40px;
-  height: 40px;
-  border-radius: 14px;
-  display:grid;
-  place-items:center;
-  font-weight: 900;
-  border: 1px solid rgba(79,200,255,.26);
-  background: rgba(79,200,255,.10);
-}
-.csCallout__title{ font-weight: 900; margin-bottom: 2px; }
-.csCallout__text{ color: var(--cbs-muted); }
+.csTable tbody tr{ transition: background 220ms var(--cs-ease); }
+.csTable tbody tr:hover{ background: rgba(255,255,255,.06); }
 
-.csNote{
-  margin-top: 10px;
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 14px;
-  padding: 12px;
-  background: rgba(255,255,255,.05);
-  color: var(--cbs-muted);
-  line-height: 1.55;
+.csTableList{
+  margin:0;
+  padding-left:18px;
+  color: rgba(234,242,255,.84);
+  line-height:1.65;
 }
 
-/* table */
-.csTableWrap{
-  margin-top: 14px;
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: var(--r);
-  overflow: hidden;
-  background: rgba(0,0,0,.18);
-}
-.csTable{
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-}
-.csTable thead th{
-  text-align: left;
-  padding: 12px 12px;
-  background: rgba(255,255,255,.06);
-  border-bottom: 1px solid rgba(255,255,255,.12);
-  color: rgba(234,242,255,.92);
-}
-.csTable tbody td{
-  vertical-align: top;
-  padding: 12px 12px;
-  border-bottom: 1px solid rgba(255,255,255,.08);
-  color: var(--cbs-muted);
-}
-.csTableList{ margin: 0; padding-left: 18px; line-height: 1.55; }
-
+/* Actions */
 .csActions{
   display:flex;
   align-items:center;
-  gap: 12px;
-  margin-top: 14px;
+  gap:14px;
+  margin-top:16px;
+  flex-wrap:wrap;
 }
+
 .csBtn{
-  border: 1px solid rgba(79,200,255,.26);
-  background: linear-gradient(180deg, rgba(79,200,255,.16), rgba(90,120,255,.12));
-  color: rgba(234,242,255,.92);
-  padding: 10px 14px;
+  padding:12px 16px;
   border-radius: 14px;
-  font-weight: 900;
-  cursor: pointer;
-  box-shadow: 0 10px 22px rgba(0,0,0,.22);
-  transition: transform .12s ease, filter .12s ease;
+  border:1px solid rgba(255,255,255,.16);
+  background: linear-gradient(90deg, rgba(79,200,255,.24), rgba(178,110,255,.20));
+  color: rgba(234,242,255,.96);
+  font-weight:650;
+  letter-spacing:.01em;
+  cursor:pointer;
+  transition: transform 240ms var(--cs-ease), filter 240ms var(--cs-ease);
+  box-shadow: 0 12px 26px rgba(0,0,0,.26);
 }
-.csBtn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
-.csHint{ color: var(--cbs-faint); font-size: 12px; }
+.csBtn:hover{ transform: translateY(-2px); filter: brightness(1.07); }
+.csBtn:active{ transform: translateY(0px) scale(.99); }
+
+.csHint{ color: rgba(234,242,255,.72); font-size:13.5px; }
+
+/* RESPONSIVE */
+@media (max-width: 980px){
+  .csGrid3{ grid-template-columns: 1fr; }
+  .csGrid2{ grid-template-columns: 1fr; }
+  .csH2--featured{ font-size:38px; }
+  .csSection{ padding:54px 0; }
+}
+
+@media (max-width: 520px){
+  .csContainer{ padding:54px 0 76px; }
+  .csSection__head--featured{ padding:22px 18px; }
+  .csH2{ font-size:28px; }
+  .csH2--featured{ font-size:32px; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* -------------------------
    6) ADVANTAGES (cards)

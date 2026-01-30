@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import {
   FaLinkedinIn,
   FaFacebookF,
-  FaXTwitter,
   FaInstagram,
   FaYoutube,
-} from "react-icons/fa6";
+} from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
   // ✅ Edit these anytime
@@ -19,26 +19,38 @@ export default function Footer() {
     phone: "+91 XXXXX XXXXX",
   };
 
+  // ✅ Matches your Header routes
+  const products = [
+    { label: "CompliSight", to: "/complisight" },
+    { label: "LoadSight", to: "/loadsight" },
+    { label: "CarbonSight", to: "/carbonsight" },
+  ];
+
+  // ✅ Matches your Header routes (Services dropdown)
   const services = [
-    "Product Engineering",
-    "Cloud Transformation",
-    "Data & AI",
-    "Automation",
-    "Cyber Security",
-    "Professional Services",
+    { label: "Cloud Migration", to: "/services/cloud/cloud-migration" },
+    { label: "Cloud Services", to: "/services/cloud/cloud-services" },
+    { label: "DevOps Services", to: "/services/cloud/devops-services" },
+    { label: "Application Development", to: "/services/application_development" },
+    { label: "Data Analytics", to: "/services/data-analytics" },
+    { label: "IT Consulting", to: "/services/it-consulting" },
+    { label: "Q & A", to: "/services/data-aiops" },
   ];
 
-  const industries = [
-    "Healthcare",
-    "LifeScience",
-    "Manufacturing",
-    "Retail",
-    "BFSI",
-    "Education",
-    "Energy",
+  // ✅ Main pages you already have in navbar
+  const companyLinks = [
+    { label: "Home", to: "/" },
+    { label: "About Us", to: "/about" },
+    { label: "Industries 4.0", to: "/industries" },
+    { label: "Insights", to: "/insights" },
+    { label: "Contact", to: "/contact" },
   ];
 
-  const explore = ["About", "Blog", "Case Studies", "Whitepapers", "Newsletter"];
+  // Optional (keep as # until you create these pages)
+  const explore = [
+    { label: "Privacy", to: "#" },
+    { label: "Terms", to: "#" },
+  ];
 
   return (
     <footer className="cs-footer">
@@ -46,7 +58,6 @@ export default function Footer() {
         {/* LEFT */}
         <div className="cs-footer__left">
           <div className="cs-footer__brand">
-            {/* Change to your logo path */}
             <img
               src="/images/logo.svg"
               alt={company.name}
@@ -61,11 +72,9 @@ export default function Footer() {
           <p className="cs-footer__about">{company.about}</p>
 
           <div className="cs-footer__countries">
-            <img src="../../public/images/USA.svg" alt="" /> 
-            <img src="../../public/images/INDIA.svg" alt="" /> 
-
-            <img src="../../public/images/UK.svg" alt="" /> 
-
+            <img src="/images/USA.svg" alt="" />
+            <img src="/images/INDIA.svg" alt="" />
+            <img src="/images/UK.svg" alt="" />
           </div>
 
           <div className="cs-footer__contact">
@@ -82,34 +91,33 @@ export default function Footer() {
         {/* COLUMNS */}
         <div className="cs-footer__cols">
           <div className="cs-footer__col">
+            <h4>Products</h4>
+            <ul>
+              {products.map((x) => (
+                <li key={x.label}>
+                  <Link to={x.to}>{x.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="cs-footer__col">
             <h4>Services</h4>
             <ul>
               {services.map((x) => (
-                <li key={x}>
-                  <a href="#">{x}</a>
+                <li key={x.label}>
+                  <Link to={x.to}>{x.label}</Link>
                 </li>
               ))}
             </ul>
           </div>
 
           <div className="cs-footer__col">
-            <h4>Industries</h4>
+            <h4>Company</h4>
             <ul>
-              {industries.map((x) => (
-                <li key={x}>
-                  <a href="#">{x}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="cs-footer__col">
-            <h4>Explore</h4>
-            <ul>
-              {explore.map((x) => (
-                <li key={x}>
-                  {/* Change routing as needed */}
-                  <Link to={`/${x.toLowerCase().replace(/\s+/g, "-")}`}>{x}</Link>
+              {companyLinks.map((x) => (
+                <li key={x.label}>
+                  <Link to={x.to}>{x.label}</Link>
                 </li>
               ))}
             </ul>
@@ -119,9 +127,7 @@ export default function Footer() {
         {/* RIGHT */}
         <div className="cs-footer__right">
           <h4>Subscribe</h4>
-          <p className="cs-footer__muted">
-            Subscribe to our monthly Newsletter
-          </p>
+          <p className="cs-footer__muted">Subscribe to our monthly Newsletter</p>
 
           <button className="cs-footer__subscribeBtn" type="button">
             Subscribe Now <span className="cs-footer__arrow">›</span>
@@ -149,17 +155,25 @@ export default function Footer() {
           </div>
 
           <div className="cs-footer__badges">
-            <div className="cs-badge">ISO<br />9001</div>
-            <div className="cs-badge">ISO<br />27001</div>
+            <div className="cs-badge">
+              ISO<br />9001
+            </div>
+            <div className="cs-badge">
+              ISO<br />27001
+            </div>
           </div>
         </div>
       </div>
 
       <div className="cs-footer__bottom">
         <div>© {new Date().getFullYear()} CloudSeals. All rights reserved.</div>
+
         <div className="cs-footer__bottomLinks">
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
+          {explore.map((x) => (
+            <a key={x.label} href={x.to}>
+              {x.label}
+            </a>
+          ))}
         </div>
       </div>
     </footer>

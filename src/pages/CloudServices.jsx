@@ -160,9 +160,7 @@ export default function CloudServices() {
               <a className="cs-btn cs-btn--primary" href="#cs-contact">
                 Get Free Consultation
               </a>
-              <a className="cs-btn cs-btn--ghost" href="#cs-whitepaper">
-                Download Whitepaper
-              </a>
+             
             </div>
 
             <div className="cs-badges">
@@ -204,7 +202,7 @@ export default function CloudServices() {
             </div>
 
             <div className="cs-photo">
-              <img className="cs-photo__img" src={IMG.security} alt="Cloud security" />
+              <img className="cs-photo__img" src="/images/cloudservices/services.jpeg" alt="Cloud security" />
               <div className="cs-photo__cap">Security + governance built into every layer</div>
             </div>
           </div>
@@ -223,7 +221,7 @@ export default function CloudServices() {
 
           <div className="cs-whitepaper__content cs-reveal">
             <div className="cs-feature">
-              <img src={IMG.security} alt="Feature" />
+              <img src="/images/cloudservices/modern cloud.jpeg" alt="Feature" />
             </div>
             <span className="cs-eyebrow">Cloud Services for Growing Businesses</span>
             <h2 className="cs-h2">Empowering SMBs With Intelligent Cloud Solutions</h2>
@@ -233,9 +231,7 @@ export default function CloudServices() {
             </p>
 
             <div className="cs-whitepaper__actions">
-              <a className="cs-btn cs-btn--primary" href="#cs-contact">
-                Download Whitepaper
-              </a>
+              
               <div className="cs-note">Includes: migration checklist, landing zone blueprint, and security baseline.</div>
             </div>
           </div>

@@ -48,9 +48,11 @@ img{ max-width:100%; display:block; }
 .dv-p{ margin: 0 0 12px; line-height: 1.75; }
 .dv-muted{ color: var(--muted); }
 
-/* ---------------- HERO ---------------- */
+/* =========================================================
+   HERO (UPDATED: bigger hero photo + better scaling)
+========================================================= */
 .dv-hero{
-  min-height: 86vh;
+  min-height: 90vh; /* ✅ bigger */
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
@@ -59,9 +61,9 @@ img{ max-width:100%; display:block; }
 .dv-hero__bg{
   position:absolute; inset:0;
   background-size: cover;
-  background-position: center;
-  transform: scale(1.06);
-  filter: saturate(1.1) contrast(1.05);
+  background-position: center top; /* ✅ better framing */
+  transform: scale(1.03);          /* ✅ slight zoom */
+  filter: saturate(1.08) contrast(1.05);
 }
 
 .dv-hero__overlay{
@@ -78,7 +80,7 @@ img{ max-width:100%; display:block; }
   grid-template-columns: 1.1fr .9fr;
   gap: 26px;
   align-items: center;
-  padding: 90px 0 60px;
+  padding: 100px 0 70px; /* ✅ a bit more space */
 }
 
 .dv-kicker{
@@ -156,14 +158,21 @@ img{ max-width:100%; display:block; }
   color: rgba(255,255,255,.82);
 }
 
-/* Right card */
+/* =========================================================
+   HERO RIGHT (UPDATED: dv-glass blur + readable text)
+========================================================= */
 .dv-glass{
   border-radius: 22px;
-  border: 1px solid var(--line);
-  background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
+  border: 1px solid rgba(255,255,255,.14);
+
+  /* ✅ less glass shine, more blur + darker */
+  background: rgba(0,0,0,.38);
+  backdrop-filter: blur(29px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+
   padding: 18px;
   box-shadow: var(--shadow);
-  backdrop-filter: blur(10px);
+  color: rgba(255,255,255,.92); /* ✅ text clearer */
 }
 
 .dv-glass__title{ margin:0 0 10px; font-size: 16px; }
@@ -174,6 +183,11 @@ img{ max-width:100%; display:block; }
   line-height: 1.65;
 }
 
+/* ✅ bullet visibility improved */
+.dv-glass .dv-bullets li{
+  color: rgba(255,255,255,.82);
+}
+
 .dv-metrics{
   display:grid;
   grid-template-columns: repeat(3, 1fr);
@@ -182,14 +196,14 @@ img{ max-width:100%; display:block; }
 }
 
 .dv-metric{
-  border: 1px solid var(--line);
+  border: 1px solid rgba(255,255,255,.14);
   border-radius: 16px;
   padding: 10px 12px;
-  background: rgba(0,0,0,.22);
+  background: rgba(0,0,0,.30);
 }
 
 .dv-metric strong{ display:block; font-size: 13px; }
-.dv-metric span{ display:block; margin-top: 4px; font-size: 12px; color: var(--muted); }
+.dv-metric span{ display:block; margin-top: 4px; font-size: 12px; color: rgba(255,255,255,.70); }
 
 .dv-heroShot{
   margin-top: 14px;
@@ -200,13 +214,16 @@ img{ max-width:100%; display:block; }
   box-shadow: var(--shadow);
 }
 
-.dv-heroShot img{ height: 220px; width: 100%; object-fit: cover; }
+/* ✅ bigger right image */
+.dv-heroShot img{ height: 300px; width: 100%; object-fit: fill; }
+
 .dv-heroShot__cap{
   padding: 12px 14px;
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 12px;
 }
+
 
 /* ---------------- INTRO ---------------- */
 .dv-intro__grid{
@@ -224,6 +241,10 @@ img{ max-width:100%; display:block; }
 }
 
 /* ---------------- FLOW ---------------- */
+
+/* =========================================================
+   FLOW (UPDATED: bigger images)
+========================================================= */
 .dv-flow{
   background:
     radial-gradient(700px 420px at 15% 10%, rgba(44,90,160,.16), transparent 55%),
@@ -280,7 +301,7 @@ img{ max-width:100%; display:block; }
 
 .dv-flowCard__img img{
   width:100%;
-  height: 150px;
+  height: 200px; /* ✅ bigger */
   object-fit: cover;
   transform: scale(1.02);
   transition: transform .35s ease;
@@ -290,7 +311,9 @@ img{ max-width:100%; display:block; }
   transform: scale(1.08);
 }
 
-/* ---------------- STRATEGY ---------------- */
+/* =========================================================
+   STRATEGY (UPDATED: bigger images)
+========================================================= */
 .dv-cardGrid{
   display:grid;
   grid-template-columns: repeat(3, 1fr);
@@ -317,9 +340,160 @@ img{ max-width:100%; display:block; }
 
 .dv-card__img img{
   width: 100%;
-  height: 160px;
+  height: 200px; /* ✅ bigger */
   object-fit: cover;
 }
+/* =========================================================
+   STRATEGY — Premium Heading (only heading/subtitle area)
+========================================================= */
+.dv-strategyHead{
+  margin-bottom: 26px;
+  padding: 18px 18px 16px;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.10);
+  background:
+    radial-gradient(700px 220px at 15% 20%, rgba(72,166,255,.14), transparent 60%),
+    radial-gradient(700px 220px at 90% 0%, rgba(255,122,24,.10), transparent 60%),
+    rgba(0,0,0,.22);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 18px 50px rgba(0,0,0,.35);
+}
+
+.dv-eyebrow{
+  display:inline-flex;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.05);
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.78);
+}
+
+.dv-strategyTitle{
+  position: relative;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  line-height: 1.05;
+}
+
+.dv-titleGlow{
+  position:absolute;
+  left: -10px;
+  bottom: -10px;
+  width: 160px;
+  height: 28px;
+  background: radial-gradient(circle at 30% 50%, rgba(72,166,255,.35), transparent 70%);
+  filter: blur(8px);
+  opacity: .9;
+  pointer-events:none;
+}
+
+.dv-strategySub{
+  margin: 0;
+  max-width: 72ch;
+  line-height: 1.7;
+  color: rgba(255,255,255,.78);
+  font-size: 15px;
+}
+
+.dv-strong{
+  color: rgba(255,255,255,.92);
+  font-weight: 900;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: linear-gradient(90deg, rgba(72,166,255,.14), rgba(255,122,24,.10));
+}
+
+.dv-miniChips{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.dv-chip{
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.22);
+  color: rgba(255,255,255,.82);
+  font-size: 12px;
+  font-weight: 850;
+  transition: transform .18s ease, border-color .18s ease, background .18s ease;
+}
+
+.dv-chip:hover{
+  transform: translateY(-2px);
+  border-color: rgba(72,166,255,.28);
+  background: rgba(72,166,255,.10);
+}
+
+/* Mobile polish */
+@media (max-width: 620px){
+  .dv-strategyHead{
+    padding: 16px 14px 14px;
+    border-radius: 18px;
+  }
+  .dv-strategySub{
+    font-size: 14px;
+  }
+  .dv-titleGlow{
+    width: 120px;
+    height: 24px;
+  }
+}
+
+/* =========================
+   STRATEGY — Title Upgrade
+========================= */
+.dv-cardTitleRow{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top: 6px;
+}
+
+.dv-cardIcon{
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display:grid;
+  place-items:center;
+  font-size: 16px;
+
+  border: 1px solid rgba(255,255,255,.14);
+  background: linear-gradient(135deg, rgba(72,166,255,.20), rgba(255,122,24,.12));
+  box-shadow: 0 12px 26px rgba(0,0,0,.28);
+}
+
+.dv-cardTitle{
+  font-size: 17px;
+  font-weight: 950;
+  letter-spacing: -0.01em;
+}
+
+.dv-cardBadge{
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 7px 10px;
+  border-radius: 999px;
+
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.22);
+  color: rgba(255,255,255,.78);
+}
+
+.dv-cardDesc{
+  margin-top: 8px;
+  line-height: 1.7;
+  color: rgba(255,255,255,.74);
+}
+
 
 /* ---------------- TOOLS ---------------- */
 /* =========================================================
@@ -509,6 +683,21 @@ img{ max-width:100%; display:block; }
 }
 .dv-toolCard.dv-visible{
   transform: translateY(0);
+}
+/* =========================================================
+   REVEAL ANIM
+========================================================= */
+.dv-reveal{
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(6px);
+  transition: opacity .55s ease, transform .55s ease, filter .55s ease;
+}
+
+.dv-visible{
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
 }
 
 /* =========================================================
@@ -851,19 +1040,6 @@ img{ max-width:100%; display:block; }
   border: 1px solid var(--line);
 }
 
-/* ---------------- REVEAL ANIM ---------------- */
-.dv-reveal{
-  opacity: 0;
-  transform: translateY(16px);
-  filter: blur(6px);
-  transition: opacity .55s ease, transform .55s ease, filter .55s ease;
-}
-
-.dv-visible{
-  opacity: 1;
-  transform: translateY(0);
-  filter: blur(0);
-}
 
 /* ---------------- RESPONSIVE ---------------- */
 @media (max-width: 980px){
@@ -883,4 +1059,37 @@ img{ max-width:100%; display:block; }
     grid-template-columns: 1fr;
   }
   .dv-metrics{ grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   RESPONSIVE (UPDATED: hero + image scaling)
+========================================================= */
+@media (max-width: 980px){
+  .dv-hero__grid{ grid-template-columns: 1fr; padding-top: 70px; }
+  .dv-intro__grid{ grid-template-columns: 1fr; }
+  .dv-flowGrid{ grid-template-columns: repeat(2, 1fr); }
+  .dv-cardGrid{ grid-template-columns: repeat(2, 1fr); }
+  .dv-delivery__grid{ grid-template-columns: 1fr; }
+  .dv-caseGrid{ grid-template-columns: repeat(2, 1fr); }
+  .dv-faqGrid{ grid-template-columns: 1fr; }
+  .dv-ctaBox{ grid-template-columns: 1fr; }
+
+  /* ✅ hero image block bigger on tablets */
+  .dv-heroShot img{ height: 280px; }
+}
+
+@media (max-width: 620px){
+  .dv-flowGrid, .dv-cardGrid, .dv-toolGrid, .dv-caseGrid{
+    grid-template-columns: 1fr;
+  }
+  .dv-metrics{ grid-template-columns: 1fr; }
+
+  /* ✅ mobile hero spacing + bigger right image */
+  .dv-hero{ min-height: 92vh; }
+  .dv-hero__grid{ padding: 78px 0 52px; }
+  .dv-heroShot img{ height: 260px; }
+
+  /* ✅ bigger images still but fit mobile */
+  .dv-flowCard__img img{ height: 190px; }
+  .dv-card__img img{ height: 190px; }
 }

@@ -104,7 +104,7 @@ export default function Loadsight() {
       tag: "Manufacturing & Coils",
       title: "Coil / load safety with real-time guardrails",
       text: "Prevent exclusion-zone breaches and risky handling during lifts, loading, and staging.",
-      img: "/images/loadsight/loadsight-coil.png",
+      img: "/images/loadsite/coil saftey.jpeg",
       points: ["Exclusion-zone enforcement", "Near-miss patterns", "Evidence timeline"],
     },
     {
@@ -112,7 +112,7 @@ export default function Loadsight() {
       tag: "Yards & Warehouses",
       title: "Safer yards with faster turnaround",
       text: "Reduce congestion and unsafe movement patterns with continuous monitoring and smarter alerts.",
-      img: "/images/loadsight/loadsight-yard.png",
+      img: "/images/loadsite/yard saftey.jpeg",
       points: ["Queue & congestion signals", "Driver safety cues", "Hotspot analytics"],
     },
     {
@@ -120,7 +120,7 @@ export default function Loadsight() {
       tag: "Ports & Terminals",
       title: "Terminal visibility across cranes & lanes",
       text: "Monitor safety zones, asset movement, and coordination risks across high-traffic terminals.",
-      img: "/images/loadsight/loadsight-terminal.png",
+      img: "/images/loadsite/crane visibility.jpeg",
       points: ["Hazard-zone alerts", "Asset coordination", "Shift KPIs"],
     },
     {
@@ -128,7 +128,7 @@ export default function Loadsight() {
       tag: "Ops Command",
       title: "One view for alerting, review, and reporting",
       text: "A single operational cockpit for investigations, close-outs, and weekly performance reviews.",
-      img: "/images/loadsight/loadsight-hero.png",
+      img: "/images/loadsite/one view.png",
       points: ["Review workflow", "Automated reports", "Trend analysis"],
     },
   ];
@@ -177,7 +177,7 @@ export default function Loadsight() {
 
           <div className="lsHero__media lsReveal">
             <div className="lsHeroCard">
-              <img src="/images/loadsight/loadsight-hero.png" alt="Loadsight hero visual" />
+              <img src="/images/loadsite/m1.png" alt="Loadsight hero visual" />
               <div className="lsHeroCard__cap">
                 <FaCheckCircle aria-hidden="true" />
                 Live monitoring • Smart alerts • Review-ready evidence
