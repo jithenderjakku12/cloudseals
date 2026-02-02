@@ -94,6 +94,7 @@ img{ max-width:100%; display:block; }
   background-position: center;
   transform: scale(1.06);
   filter: saturate(1.08) contrast(1.06);
+  
 }
 .cs-hero__veil{
   position:absolute; inset:0;

@@ -97,6 +97,9 @@ export default function CloudServices() {
 
   // ✅ your images directory style
   const IMG = {
+    main: "../../public/images/services/azp.png",
+    
+    
     hero: "/images/devops/time.jpeg",
     security: "/images/devops/security.jpg",
     stack: "/images/devops/stack.jpeg",
@@ -139,7 +142,7 @@ export default function CloudServices() {
     <main className="cs-page">
       {/* HERO */}
       <section className="cs-hero">
-        <div className="cs-hero__bg" style={{ backgroundImage: `url(${IMG.hero})` }} />
+        <div className="cs-hero__bg" style={{ backgroundImage: `url(${IMG.main})` }} />
         <div className="cs-hero__veil" />
 
         <div className="cs-wrap cs-hero__grid">

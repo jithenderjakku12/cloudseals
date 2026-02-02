@@ -14,6 +14,8 @@ import {
   FaCheckCircle,
   FaArrowRight,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
 
 /**
  * Loadsight Agentic AI Page (CloudSeals)
@@ -438,9 +440,9 @@ export default function Loadsight() {
             <p className="lsSub">
               We can map Loadsight to your camera layout, zones, and workflows — and integrate with YMS/TMS/WMS for measurable outcomes.
             </p>
-            <a className="lsBtn lsBtn--primary" href="/contact">
+            <Link className="lsBtn lsBtn--primary" href="/contact">
               Talk to us <FaArrowRight aria-hidden="true" />
-            </a>
+            </Link>
           </div>
         </div>
       </section>
