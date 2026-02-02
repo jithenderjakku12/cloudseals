@@ -339,7 +339,7 @@ export default function CarbonSight() {
           <span className="csOverline__tag">Universal Supervisor Node</span>
         </div>
 
-        <h2 className="csH2">The Core Technology: Your Moat</h2>
+        <h2 className="csH2">The Core Technology</h2>
         <p className="csLead">
           Meet the <span className="csEm">Universal Supervisor Node</span>.
           Unlike vertical-specific tools, CloudSeals is a universal verification engine powered by Agentic AI —
@@ -406,7 +406,7 @@ export default function CarbonSight() {
           <span className="csOverline__tag">Agent Squads</span>
         </div>
 
-        <h2 className="csH2">The Innovation Spectrum: Your Portfolio</h2>
+        <h2 className="csH2">The Innovation Spectrum</h2>
         <p className="csLead">
           One engine. Infinite applications. We deploy specialized <span className="csEm">Agent Squads</span> for
           the planet’s most critical sectors.

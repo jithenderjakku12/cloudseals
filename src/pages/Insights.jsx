@@ -530,7 +530,7 @@ export default function Insights() {
               <div className="csiProd__icon">
                 <FaShieldAlt aria-hidden="true" />
               </div>
-              <div className="csiProd__name">Complisight</div>
+              <div className="csiProd__name"><a href="/complisight">Complisight</a></div>
               <div className="csiProd__text">
                 AI safety & compliance on top of CCTV + operational data (zones, roles, permits, KPIs). Agents:
                 FacilityWatch, DriverGuard, FSRGuard.
@@ -541,7 +541,7 @@ export default function Insights() {
               <div className="csiProd__icon">
                 <FaRobot aria-hidden="true" />
               </div>
-              <div className="csiProd__name">Loadsight</div>
+              <div className="csiProd__name"><a href="/loadsight">Loadsight</a>  </div>
               <div className="csiProd__text">
                 Agentic AI for yards/terminals and coil/load safety. Per-decision model: vision → anomaly → alert → review
                 → report.
@@ -552,7 +552,7 @@ export default function Insights() {
               <div className="csiProd__icon">
                 <FaLeaf aria-hidden="true" />
               </div>
-              <div className="csiProd__name">CarbonSight</div>
+              <div className="csiProd__name"><a href="/carbonsight">CarbonSight</a></div>
               <div className="csiProd__text">
                 dMRV using KML boundaries, historical regression, fraud flags, and hectare → tree-unit traceability for
                 audit-ready evidence packs.
@@ -574,7 +574,7 @@ export default function Insights() {
             </div>
 
             <a className="csiCta__btn" href="/contact">
-              Subscribe / Contact <FaArrowRight aria-hidden="true" />
+               Contact <FaArrowRight aria-hidden="true" />
             </a>
           </div>
         </div>

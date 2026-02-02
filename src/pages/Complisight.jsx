@@ -57,7 +57,7 @@ export default function Complisight() {
       {
         icon: <FaRobot aria-hidden="true" />,
         title: "Detect",
-        text: "YOLO models detect people + PPE items in each frame.",
+        text: "Models detect people + PPE items in each frame.",
       },
       {
         icon: <FaExclamationTriangle aria-hidden="true" />,
@@ -344,13 +344,7 @@ export default function Complisight() {
             ))}
           </div>
 
-          <div className="csInlineMedia" data-reveal>
-            <img
-              className="csMediaImg"
-              src="/images/complisight/images/complisight-detection.png"
-              alt="PPE detection flow"
-            />
-          </div>
+          
         </div>
       </section>
 

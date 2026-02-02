@@ -4,6 +4,8 @@ import {
   FaLinkedinIn,
   FaFacebookF,
   FaInstagram,
+    FaPhoneAlt,
+  FaEnvelope,
   FaYoutube,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -15,8 +17,8 @@ export default function Footer() {
     tagline: "Agentic AI for Safe & Compliant Operations",
     about:
       "CloudSeals builds enterprise-grade AI agents for safety, compliance, and automation across industries.",
-    email: "hello@cloudseals.com",
-    phone: "+91 XXXXX XXXXX",
+    email: "info@cloudseals.com",
+    phone: "+91 76759-95599",
   };
 
   // ✅ Matches your Header routes
@@ -78,10 +80,14 @@ export default function Footer() {
           </div>
 
           <div className="cs-footer__contact">
+            <FaEnvelope aria-hidden="true" />
             <a className="cs-footer__contactLink" href={`mailto:${company.email}`}>
               {company.email}
             </a>
-            <span className="cs-footer__sep">|</span>
+            
+            
+            <FaPhoneAlt aria-hidden="true" />
+            
             <a className="cs-footer__contactLink" href={`tel:${company.phone}`}>
               {company.phone}
             </a>
@@ -127,7 +133,9 @@ export default function Footer() {
         {/* RIGHT */}
         <div className="cs-footer__right">
           <h4>Subscribe</h4>
-          <p className="cs-footer__muted">Subscribe to our monthly Newsletter</p>
+          <div>adlsck</div>
+       
+
 
           <Link className="cs-footer__subscribeBtn" to="/contact" type="button">
             Subscribe Now <span className="cs-footer__arrow">›</span>
@@ -136,17 +144,17 @@ export default function Footer() {
           <div className="cs-footer__follow">
             <div className="cs-footer__followTitle">Follow us on</div>
             <div className="cs-footer__socials">
-              <a className="cs-social" href="#" aria-label="LinkedIn">
+              <a className="cs-social" href="https://www.linkedin.com/company/cloudseals-uk-ltd/posts/?feedView=all" aria-label="LinkedIn">
                 <FaLinkedinIn />
               </a>
-              <a className="cs-social" href="#" aria-label="Facebook">
+              <a className="cs-social" href="https://www.facebook.com/nsacloudseals/" aria-label="Facebook">
                 <FaFacebookF />
               </a>
-              <a className="cs-social" href="#" aria-label="X">
+              <a className="cs-social" href="https://x.com/i/flow/login?redirect_after_login=%2Fcloud_seals" aria-label="X">
                 <FaXTwitter />
               </a>
             
-              <a className="cs-social" href="#" aria-label="YouTube">
+              <a className="cs-social" href="https://www.youtube.com/@thefutureoftechwithcloudseals" aria-label="YouTube">
                 <FaYoutube />
               </a>
             </div>

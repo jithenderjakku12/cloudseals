@@ -28,7 +28,8 @@
 .csConReveal.isVisible{ opacity:1; transform:none; }
 
 /* Hero */
-.csConHero{ position: relative; padding: 110px 0 70px; overflow:hidden; }
+  
+.csConHero{ position: relative; padding: 150px 0 70px; overflow:hidden;  }
 .csConHero__bg{
   position:absolute; inset:-160px -120px -220px -120px;
   background:
@@ -205,6 +206,10 @@
   box-shadow: 0 0 0 6px rgba(79,200,255,.12);
 }
 
+.csConSelect option {
+  background-color: #0d1526;   /* option bg */
+  color: #ffffff;
+}
 .csConBtn{
   width: 100%;
   margin-top: 8px;
@@ -301,4 +306,216 @@
   .csConHero{ padding: 92px 0 50px; }
   .csConGrid2{ grid-template-columns: 1fr; }
   .csConFormHead{ flex-direction: column; align-items:flex-start; }
+}
+/* ==============================
+   Global Locations — Clean UI
+   (Replace your existing location CSS with this)
+   ============================== */
+
+.csConLocations{
+  padding: 76px 0;
+  background:
+    radial-gradient(900px 520px at 10% 10%, rgba(79,200,255,.10), transparent 55%),
+    radial-gradient(900px 520px at 90% 20%, rgba(178,110,255,.08), transparent 55%),
+    linear-gradient(180deg, rgba(7,10,24,.85), rgba(7,10,24,.92));
+  border-top: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.csConWrap{ width:min(1180px, 92%); margin:0 auto; }
+
+.csConLocHead{ margin-bottom: 22px; }
+.csConH2{
+  margin: 10px 0 8px;
+  font-size: 40px;
+  letter-spacing: -0.02em;
+}
+.csConP{
+  margin: 0;
+  max-width: 720px;
+  color: rgba(234,242,255,.72);
+  line-height: 1.7;
+}
+
+/* kicker */
+.csConKicker{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  color: rgba(234,242,255,.72);
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.csConKdot{
+  width:10px; height:10px; border-radius: 999px;
+  background: linear-gradient(90deg, rgba(79,200,255,1), rgba(178,110,255,1));
+  box-shadow: 0 0 14px rgba(79,200,255,.28);
+}
+
+/* GRID */
+.csConLocGrid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+/* CARD — cleaner, less fog */
+.csConLocCard{
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  box-shadow: 0 18px 55px rgba(0,0,0,.32);
+  padding: 18px;
+  transition: transform 220ms cubic-bezier(.2,.8,.2,1),
+              border-color 220ms cubic-bezier(.2,.8,.2,1),
+              background 220ms cubic-bezier(.2,.8,.2,1);
+  backdrop-filter: blur(10px);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.csConLocCard:hover{
+transform: scale(1.02);
+
+
+  border-color: rgba(255,255,255,.18);
+  background: rgba(255,255,255,.055);
+}
+
+/* TOP ROW */
+.csConLocTop{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  margin-bottom: 14px;
+}
+
+.csConLocIcon{
+  width:44px; height:44px;
+  border-radius: 16px;
+  display:grid;
+  place-items:center;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.92);
+}
+.csConLocIcon svg{ width:18px; height:18px; }
+
+.csConLocTitleBlock{ flex:1; min-width:0; }
+
+.csConLocTitleRow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.csConLocTitle{
+  font-weight: 800;
+  font-size: 16px;
+  color: rgba(255,255,255,.95);
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.csConFlag{ font-size: 16px; }
+
+.csConBadge{
+  font-size: 12px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  color: rgba(234,242,255,.82);
+  white-space: nowrap;
+}
+
+/* Softer country accents */
+.csConBadge--uk{ border-color: rgba(79,200,255,.20); }
+.csConBadge--in{ border-color: rgba(255,122,78,.20); }
+.csConBadge--us{ border-color: rgba(178,110,255,.20); }
+
+/* Mini pills */
+.csConLocMini{
+  margin-top: 10px;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.csConMiniPill{
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  color: rgba(234,242,255,.70);
+}
+.csConMiniDot{
+  width:5px; height:5px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.25);
+}
+
+/* BODY ITEMS */
+.csConLocBody{
+  display:grid;
+  gap: 12px;
+}
+
+.csConLocItem{
+  display:flex;
+  gap: 10px;
+  align-items:flex-start;
+}
+
+.csConLocItemIcon{
+  width:32px; height:32px;
+  border-radius: 12px;
+  display:grid;
+  place-items:center;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  color: rgba(234,242,255,.86);
+  flex: 0 0 auto;
+}
+.csConLocItemIcon svg{ width:15px; height:15px; opacity:.95; }
+
+/* Links: remove underline clutter, only underline on hover */
+.csConLocLink{
+  color: rgba(234,242,255,.86);
+  text-decoration: none;
+  line-height: 1.6;
+  font-size: 14px;
+  word-break: break-word;
+}
+.csConLocLink:hover{ text-decoration: underline; text-underline-offset: 3px; }
+
+.csConLocLinkHint{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-top: 6px;
+  font-size: 12.5px;
+  color: rgba(234,242,255,.58);
+}
+.csConExtIcon{ font-size: 12px; opacity: .8; }
+
+/* Make the address look like normal text (no "blue link" feel) */
+.csConLocItem:first-child .csConLocLink{
+  color: rgba(234,242,255,.82);
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .csConH2{ font-size: 34px; }
+  .csConLocGrid{ grid-template-columns: 1fr; }
+  .csConLocCard{ padding: 16px; }
 }

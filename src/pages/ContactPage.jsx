@@ -1,4 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
+import {  FaExternalLinkAlt } from "react-icons/fa";
+
 import {
   FaPhoneAlt,
   FaEnvelope,
@@ -51,8 +53,8 @@ export default function ContactPage({ apiBaseUrl = "" }) {
   // Replace these with your real details
   const contact = useMemo(
     () => ({
-      phone: "+91-XXXXXXXXXX",
-      email: "contact@cloudseals.com",
+       email: "info@cloudseals.com",
+    phone: "+91 76759-95599",
       response: "We usually respond within 24–48 business hours.",
     }),
     []
@@ -61,19 +63,19 @@ export default function ContactPage({ apiBaseUrl = "" }) {
   const locations = useMemo(
     () => [
       {
-        title: "UK Office",
-        subtitle: "Sales & Partnerships",
-        lines: ["London, United Kingdom", "Phone: +44-XXXXXXXXXX"],
+        title: "UK ",
+        
+        lines: ["Suite G04 1 Quality Court, Chancery Lane, London, WC2A 1HR", "Phone:  +44 781-8953153"],
       },
       {
-        title: "India Delivery Center",
-        subtitle: "Engineering & Operations",
-        lines: ["Hyderabad, Telangana", "Phone: +91-XXXXXXXXXX"],
+        title: "India ",
+    
+        lines: ["Unit No.210/4, H No: 6-3-1192/2/1 to 16, 2nd Floor, Block-A, My Home Tycoon, Kundan Bagh, Begumpet, Hyderabad, Telangana-500016", "Phone:  +91 76759-95599"],
       },
       {
-        title: "Remote-first",
-        subtitle: "Global delivery model",
-        lines: ["Distributed teams across regions", "Secure, compliant delivery processes"],
+        title: "US",
+       
+        lines: ["2978 Themmes Court,Beavercreek, OH 45324 United States", "Phone: +1 937-305-3270"],
       },
     ],
     []
@@ -327,7 +329,7 @@ export default function ContactPage({ apiBaseUrl = "" }) {
                   </label>
 
                   <label className="csConLabel">
-                    Phone <span className="csConReq">*</span>
+                    Phone 
                     <input
                       className="csConInput"
                       name="phone"
@@ -370,39 +372,110 @@ export default function ContactPage({ apiBaseUrl = "" }) {
       </header>
 
       {/* LOCATIONS */}
-      <section className="csConLocations">
-        <div className="csConWrap">
-          <div className="csConLocHead csConReveal">
-            <h2 className="csConH2">Global Locations</h2>
-            <p className="csConP">
-              Strategically positioned to deliver secure cloud + AI outcomes — with strong governance and
-              audit-friendly execution.
-            </p>
-          </div>
+   {/* LOCATIONS */}
+<section className="csConLocations">
+  <div className="csConWrap">
+    <div className="csConLocHead csConReveal">
+      <div className="csConKicker">
+        <span className="csConKdot" />
+        Global Footprint
+      </div>
 
-          <div className="csConLocGrid">
-            {locations.map((l) => (
-              <article className="csConLocCard csConReveal" key={l.title}>
-                <div className="csConLocTop">
-                  <div className="csConLocIcon">
-                    <FaMapMarkerAlt aria-hidden="true" />
+      <h2 className="csConH2">Global Locations</h2>
+      <p className="csConP">
+        Strategically positioned to deliver secure cloud + AI outcomes — with strong governance and
+        audit-friendly execution.
+      </p>
+    </div>
+
+    <div className="csConLocGrid">
+      {locations.map((l) => {
+        const address = l.lines?.[0] || "";
+        const phoneLine = l.lines?.[1] || "";
+        const phone = phoneLine.replace("Phone:", "").trim();
+
+        const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+        const telLink = `tel:${phone.replace(/\s/g, "")}`;
+
+        const titleLower = l.title.toLowerCase();
+        const flag = titleLower.includes("uk")
+          ? "🇬🇧"
+          : titleLower.includes("india")
+          ? "🇮🇳"
+          : "🇺🇸";
+
+        const badgeClass = titleLower.includes("uk")
+          ? "csConBadge--uk"
+          : titleLower.includes("india")
+          ? "csConBadge--in"
+          : "csConBadge--us";
+
+        return (
+          <article className="csConLocCard csConReveal" key={l.title}>
+            <div className="csConLocTop">
+              <div className={`csConLocIcon ${badgeClass}`} aria-hidden="true">
+                <FaMapMarkerAlt />
+              </div>
+
+              <div className="csConLocTitleBlock">
+                <div className="csConLocTitleRow">
+                  <div className="csConLocTitle">
+                    <span className="csConFlag" aria-hidden="true">{flag}</span>
+                    {l.title}
                   </div>
-                  <div>
-                    <div className="csConLocTitle">{l.title}</div>
-                    <div className="csConLocSub">{l.subtitle}</div>
-                  </div>
+
+                  
                 </div>
 
-                <ul className="csConLocList">
-                  {l.lines.map((x) => (
-                    <li key={x}>{x}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+                <div className="csConLocMini">
+                  <span className="csConMiniPill">Secure Delivery</span>
+                  <span className="csConMiniDot" />
+                  <span className="csConMiniPill">Audit Ready</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="csConLocBody">
+              {/* Address */}
+              <div className="csConLocItem">
+                <div className="csConLocItemIcon" aria-hidden="true">
+                  <FaMapMarkerAlt />
+                </div>
+
+                <a className="csConLocLink" href={mapLink} target="_blank" rel="noreferrer">
+                  {address}
+                  <span className="csConLocLinkHint">
+                    Open in Maps <FaExternalLinkAlt className="csConExtIcon" aria-hidden="true" />
+                  </span>
+                </a>
+              </div>
+
+              {/* Phone */}
+              <div className="csConLocItem">
+                <div className="csConLocItemIcon" aria-hidden="true">
+                  <FaPhoneAlt />
+                </div>
+
+                <a className="csConLocLink" href={telLink}>
+                  {phone}
+                </a>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+      
     </div>
   );
 }

@@ -479,7 +479,7 @@
 .nav-link.active{
   font-weight: 800;
   font-size: 16.5px;            /* normal 15px -> increase */
-  color: #ffcc66;               /* gold */
+  color: #efd9ab;               /* gold */
   letter-spacing: 0.2px;
   text-shadow: 0 0 14px rgba(255, 204, 102, 0.25);
   transform: translateY(-1px);
@@ -494,7 +494,7 @@
   bottom: 6px;
   height: 2px;
   border-radius: 999px;
-  background: rgba(255, 204, 102, 0.95);
+  background:#efd9ab;
 }
 /* =========================================================
    MOBILE ADD-ON ONLY (Do not change desktop)

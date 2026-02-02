@@ -157,7 +157,7 @@ export default function CloudServices() {
             </p>
 
             <div className="cs-ctaRow">
-              <a className="cs-btn cs-btn--primary" href="#cs-contact">
+              <a className="cs-btn cs-btn--primary" href="/contact">
                 Get Free Consultation
               </a>
              

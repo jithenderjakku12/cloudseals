@@ -8,29 +8,77 @@ import {
 import { FaCheck } from "react-icons/fa";
 
 import  {  useState } from "react";
+import { Link } from "react-router-dom";
+
 
  
 
 const CloudMigration = () => {
 
- const slides = [
-    {
-      pill: "CASE STUDY",
-      title: "Data Ingestion Pipeline for Enterprise SaaS",
-      desc:
-        "A cloud-first enterprise platform enabled real-time decision making using BYOD data ingestion across multiple platforms.",
-      cta: "Full Case Study",
-      className: "slide-1",
+const [openCase, setOpenCase] = React.useState(false);
+const [activeCase, setActiveCase] = React.useState(null);
+
+const openFullCaseStudy = (slide) => {
+  setActiveCase(slide);
+  setOpenCase(true);
+};
+
+const closeFullCaseStudy = () => {
+  setOpenCase(false);
+  setActiveCase(null);
+};
+
+
+const slides = [
+  {
+    id: "enterprise-saas-ingestion",
+    pill: "CASE STUDY",
+    title: "Data Ingestion Pipeline for Enterprise SaaS",
+    desc:
+      "A cloud-first enterprise platform enabled real-time decision making using BYOD data ingestion across multiple platforms.",
+    cta: "Full Case Study",
+    className: "slide-1",
+
+    // ✅ FULL CASE STUDY CONTENT
+    full: {
+      overview:
+        "Built a secure, scalable ingestion layer to unify mobile, web, IoT, and partner feeds into a governed enterprise data plane—enabling near real-time analytics and operational decisioning.",
+      highlights: [
+        "Event-driven ingestion using streaming + batch pipelines",
+        "Schema validation, deduplication, enrichment, and PII handling",
+        "Real-time dashboards, alerting, and workflow triggers",
+        "End-to-end audit trails, lineage, and role-based access controls",
+      ],
+      tech: ["Cloud Run / Functions", "Pub/Sub / Kafka", "BigQuery / Data Lake", "Cloud Storage", "IAM + KMS", "CI/CD"],
+      outcome:
+        "Reduced manual data handling, improved data freshness, and enabled faster decisions across operations, finance, and compliance."
     },
-    {
-      pill: "CASE STUDY",
-      title: "Centralized Cloud Platform for Publishing Giant",
-      desc:
-        "Built a centralized cloud-native platform leveraging AWS services, enabling ERP and marketing integrations and driving 15% annual growth.",
-      cta: "Full Case Study",
-      className: "slide-2",
+  },
+  {
+    id: "publishing-giant-cloud-platform",
+    pill: "CASE STUDY",
+    title: "Centralized Cloud Platform for Publishing Giant",
+    desc:
+      "Built a centralized cloud-native platform leveraging AWS services, enabling ERP and marketing integrations and driving 15% annual growth.",
+    cta: "Full Case Study",
+    className: "slide-2",
+
+    full: {
+      overview:
+        "Modernized legacy integrations into a centralized cloud platform to unify ERP + marketing systems and improve reliability, governance, and time-to-insight.",
+      highlights: [
+        "Standardized APIs + integration layer for multiple business systems",
+        "Automated ETL pipelines and quality checks",
+        "Observability: logs, alerts, dashboards, and incident playbooks",
+        "Security hardening and compliance-ready controls",
+      ],
+      tech: ["AWS Lambda", "S3", "EventBridge", "RDS", "IAM", "CloudWatch", "Terraform"],
+      outcome:
+        "Improved platform stability and integration velocity, supporting measurable growth and faster cross-team execution."
     },
-  ];
+  },
+];
+
 
   const [idx, setIdx] = useState(0);
   const s = slides[idx];
@@ -168,9 +216,14 @@ const CloudMigration = () => {
 
         <p>{s.desc}</p>
 
-        <button className="secondary-btn">
-          {s.cta} &nbsp;›
-        </button>
+      <button
+  className="secondary-btn"
+  type="button"
+  onClick={() => openFullCaseStudy(s)}
+>
+  {s.cta} &nbsp;›
+</button>
+
       </div>
 
       {/* DOTS */}
@@ -195,9 +248,9 @@ const CloudMigration = () => {
             Modernization Partner?
           </h2>
 
-          <button className="why-btn" type="button">
+          <Link to="/contact" className="why-btn" type="button">
             Get A Free Consultation <span className="why-btn-arrow">›</span>
-          </button>
+          </Link>
         </div>
 
         {/* RIGHT */}
@@ -256,17 +309,53 @@ const CloudMigration = () => {
     </div>
 
     <div className="cta-glass-form">
-      <input placeholder="Full Name*" />
-      <input placeholder="Business Email*" />
-      <button>
-        Get a Free Consultation →
-      </button>
+      
+      <Link to="/contact" className="consultation">
+        Get a Free Consultation →   
+      </Link>
     </div>
   </div>
 </section>
 
+
+{openCase && activeCase && (
+  <div className="csModal" role="dialog" aria-modal="true" aria-label="Full case study">
+    <div className="csModal__backdrop" onClick={closeFullCaseStudy} />
+    <div className="csModal__panel">
+      <button className="csModal__close" onClick={closeFullCaseStudy} aria-label="Close">
+        ✕
+      </button>
+
+      <div className="csModal__pill">{activeCase.pill}</div>
+      <h2 className="csModal__title">{activeCase.title}</h2>
+      <p className="csModal__overview">{activeCase.full.overview}</p>
+
+      <h3 className="csModal__h3">Key Highlights</h3>
+      <ul className="csModal__list">
+        {activeCase.full.highlights.map((x) => (
+          <li key={x}>{x}</li>
+        ))}
+      </ul>
+
+      <h3 className="csModal__h3">Tech Stack</h3>
+      <div className="csModal__chips">
+        {activeCase.full.tech.map((t) => (
+          <span className="csModal__chip" key={t}>{t}</span>
+        ))}
+      </div>
+
+      <div className="csModal__outcome">
+        <span className="csModal__outcomeLabel">Outcome</span>
+        <p>{activeCase.full.outcome}</p>
+      </div>
+    </div>
+  </div>
+)}
+
+
     </div>
   );
 };
+
 
 export default CloudMigration;

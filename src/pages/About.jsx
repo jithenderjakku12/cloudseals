@@ -18,84 +18,129 @@ const partners = [
 
 export default function About() {
 
+
+
+  // ===== Contact Form State =====
 const [firstName, setFirstName] = useState("");
 const [lastName, setLastName] = useState("");
 const [email, setEmail] = useState("");
 const [mobile, setMobile] = useState("");
 const [message, setMessage] = useState("");
+
 const [loading, setLoading] = useState(false);
-const [success, setSuccess] = useState(null); // null / true / false
+const [success, setSuccess] = useState(null); // null | true | false
+const [errorMsg, setErrorMsg] = useState("");
 
-const [errorMsg, setErrorMsg] = useState(""); // new for error messages
+// ===== Helpers =====
+const isGmail = (value) =>
+  /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(String(value || "").trim());
 
- // Helper functions
-  const isGmail = (email) =>
-    /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(String(email).trim());
+const is10Digits = (value) =>
+  /^\d{10}$/.test(String(value || "").trim());
 
-  const is10Digits = (phone) =>
-    /^\d{10}$/.test(String(phone).trim());
-
-
-
+// ===== Submit =====
 const handleSubmit = async (e) => {
   e.preventDefault();
+  if (loading) return;
+
   setLoading(true);
   setSuccess(null);
   setErrorMsg("");
 
-  // Validations
-  if (!isGmail(email)) {
-    setErrorMsg("Email must be a valid Gmail address.");
+  const fullName = `${firstName}`.trim() + " " + `${lastName}`.trim();
+  const cleanEmail = String(email || "").trim();
+  const cleanPhone = String(mobile || "").trim();
+  const cleanMessage = String(message || "").trim();
+
+  if (!firstName.trim() || !lastName.trim()) {
+    setErrorMsg("Please enter your first and last name.");
     setLoading(false);
     return;
   }
 
-  if (!is10Digits(mobile)) {
+  if (!isGmail(cleanEmail)) {
+    setErrorMsg("Email must be a valid Gmail address (example@gmail.com).");
+    setLoading(false);
+    return;
+  }
+
+  if (!is10Digits(cleanPhone)) {
     setErrorMsg("Mobile number must be exactly 10 digits.");
     setLoading(false);
     return;
   }
 
+  if (cleanMessage.length < 5) {
+    setErrorMsg("Please add a short message (min 5 characters).");
+    setLoading(false);
+    return;
+  }
+
   try {
-    const res = await fetch(
-      "https://cloudseals-api-3tbb.vercel.app/api/leads-contact",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: `${firstName} ${lastName}`,
-          email: email,
-          phone: mobile,
-          company: "-", // optional
-          purpose: "other",
-          message: message,
-          pageUrl: window.location.href,
-        }),
-      }
-    );
+    const payload = {
+      name: fullName.trim(),
+      email: cleanEmail,
+      phone: cleanPhone,
+      company: "-",
+      purpose: "other",
+      message: cleanMessage,
+      pageUrl: window.location.href,
+    };
 
-    const data = await res.json();
+    const res = await fetch("https://cloudseals-api-3tbb.vercel.app/api/leads-contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
 
-    if (data.ok) {
-      setSuccess(true);
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setMobile("");
-      setMessage("");
-    } else {
+    // ✅ FIXED: no jsonErr variable
+    let data = null;
+    let text = "";
+
+    try {
+      data = await res.json();
+    } catch (e) {
+  console.warn("Response is not JSON:", e);
+  data = null;
+}
+
+
+    console.log("Contact API status:", res.status);
+    console.log("Contact API response:", data || text);
+
+    if (!res.ok) {
+      const msg =
+        (data && (data.message || data.error)) ||
+        text ||
+        `Request failed (HTTP ${res.status}).`;
       setSuccess(false);
-      setErrorMsg("Something went wrong. Try again.");
+      setErrorMsg(msg);
+      return;
     }
+
+    if (data && data.ok === false) {
+      setSuccess(false);
+      setErrorMsg(data.message || "Something went wrong. Try again.");
+      return;
+    }
+
+    setSuccess(true);
+    setErrorMsg("");
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setMobile("");
+    setMessage("");
   } catch (err) {
-    console.error(err);
+    console.error("Contact API error:", err);
     setSuccess(false);
-    setErrorMsg("Something went wrong. Try again.");
+    setErrorMsg(
+      "Network/CORS error: request was blocked or API is unreachable. Check DevTools Console & Network tab."
+    );
   } finally {
     setLoading(false);
   }
 };
-
 
 
   const headerRef = useRef(null);
@@ -652,78 +697,79 @@ OUR PARTNERS */}
           </div>
         </section> */}
 
-       <section className="aboutPage__contact" id="contact">
-      <span className="aboutPage__orb aboutPage__orbLeft"></span>
-      <span className="aboutPage__orb aboutPage__orbRight"></span>
 
-      <div className="aboutPage__contactCard">
-        <h2 className="aboutPage__h2">
-          Contact Us <i className="fa-regular fa-face-smile"></i>
-        </h2>
+        <section className="aboutPage__contact" id="contact">
+  <span className="aboutPage__orb aboutPage__orbLeft"></span>
+  <span className="aboutPage__orb aboutPage__orbRight"></span>
 
-        <form className="aboutPage__contactForm" onSubmit={handleSubmit}>
-          <div className="aboutPage__row">
-            <input
-              type="text"
-              placeholder="First Name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              required
-            />
-            <input
-              type="text"
-              placeholder="Last Name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              required
-            />
-          </div>
+  <div className="aboutPage__contactCard">
+    <h2 className="aboutPage__h2">
+      Contact Us <i className="fa-regular fa-face-smile"></i>
+    </h2>
 
-          <div className="aboutPage__row">
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-           <input
-  type="tel"
-  placeholder="Mobile"
-  value={mobile}
-  onChange={(e) => {
-    // Remove any non-digit characters
-    const val = e.target.value.replace(/\D/g, "");
-    // Limit to 10 digits
-    if (val.length <= 10) setMobile(val);
-  }}
-  required
-/>
-
-          </div>
-
-          <textarea
-            placeholder="Project idea..."
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            required
-          ></textarea>
-
-          <button
-            className="aboutPage__submit"
-            type="submit"
-            disabled={loading}
-          >
-            {loading ? "Sending..." : "Send"}
-          </button>
-
-          {success === true && (
-            <p className="successMsg">Message sent successfully!</p>
-          )}
-          {success === false && <p className="errorMsg">{errorMsg}</p>}
-        </form>
+    <form className="aboutPage__contactForm" onSubmit={handleSubmit}>
+      <div className="aboutPage__row">
+        <input
+          type="text"
+          placeholder="First Name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Last Name"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          required
+        />
       </div>
-    </section>
+
+      <div className="aboutPage__row">
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+
+        <input
+          type="tel"
+          placeholder="Mobile Number"
+          value={mobile}
+          onChange={(e) => {
+            const val = e.target.value.replace(/\D/g, "");
+            if (val.length <= 10) setMobile(val);
+          }}
+          required
+        />
+      </div>
+
+      <textarea
+        placeholder="Project idea..."
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        required
+      />
+
+      <button className="aboutPage__submit" type="submit" disabled={loading}>
+        {loading ? "Sending..." : "Send"}
+      </button>
+
+      {success === true && (
+        <p className="successMsg">Message sent successfully!</p>
+      )}
+
+      {success === false && (
+        <p className="errorMsg">{errorMsg || "Something went wrong. Try again."}</p>
+      )}
+    </form>
+  </div>
+</section>
+
+
+
 
 
 
