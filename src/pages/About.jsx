@@ -5,6 +5,7 @@ import { TbBrain } from "react-icons/tb";
 import { FaCubes } from "react-icons/fa6";
 import { Link} from "react-router-dom";
 
+
 const partners = [
   { name: "Partner 1", logo: "/images/partners/neo4j-1.svg" },
   { name: "Partner 2", logo: "/images/partners/aws.png" },
@@ -16,6 +17,87 @@ const partners = [
 
 
 export default function About() {
+
+const [firstName, setFirstName] = useState("");
+const [lastName, setLastName] = useState("");
+const [email, setEmail] = useState("");
+const [mobile, setMobile] = useState("");
+const [message, setMessage] = useState("");
+const [loading, setLoading] = useState(false);
+const [success, setSuccess] = useState(null); // null / true / false
+
+const [errorMsg, setErrorMsg] = useState(""); // new for error messages
+
+ // Helper functions
+  const isGmail = (email) =>
+    /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(String(email).trim());
+
+  const is10Digits = (phone) =>
+    /^\d{10}$/.test(String(phone).trim());
+
+
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  setSuccess(null);
+  setErrorMsg("");
+
+  // Validations
+  if (!isGmail(email)) {
+    setErrorMsg("Email must be a valid Gmail address.");
+    setLoading(false);
+    return;
+  }
+
+  if (!is10Digits(mobile)) {
+    setErrorMsg("Mobile number must be exactly 10 digits.");
+    setLoading(false);
+    return;
+  }
+
+  try {
+    const res = await fetch(
+      "https://cloudseals-api-3tbb.vercel.app/api/leads-contact",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: `${firstName} ${lastName}`,
+          email: email,
+          phone: mobile,
+          company: "-", // optional
+          purpose: "other",
+          message: message,
+          pageUrl: window.location.href,
+        }),
+      }
+    );
+
+    const data = await res.json();
+
+    if (data.ok) {
+      setSuccess(true);
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setMobile("");
+      setMessage("");
+    } else {
+      setSuccess(false);
+      setErrorMsg("Something went wrong. Try again.");
+    }
+  } catch (err) {
+    console.error(err);
+    setSuccess(false);
+    setErrorMsg("Something went wrong. Try again.");
+  } finally {
+    setLoading(false);
+  }
+};
+
+
+
   const headerRef = useRef(null);
 
  const [_navOpen, _setNavOpen] = useState(false);
@@ -538,7 +620,7 @@ OUR PARTNERS */}
 
 
         {/* CONTACT GLASS FORM */}
-        <section className="aboutPage__contact" id="contact">
+        {/* <section className="aboutPage__contact" id="contact">
           <span className="aboutPage__orb aboutPage__orbLeft"></span>
           <span className="aboutPage__orb aboutPage__orbRight"></span>
 
@@ -568,7 +650,87 @@ OUR PARTNERS */}
               </button>
             </form>
           </div>
-        </section>
+        </section> */}
+
+       <section className="aboutPage__contact" id="contact">
+      <span className="aboutPage__orb aboutPage__orbLeft"></span>
+      <span className="aboutPage__orb aboutPage__orbRight"></span>
+
+      <div className="aboutPage__contactCard">
+        <h2 className="aboutPage__h2">
+          Contact Us <i className="fa-regular fa-face-smile"></i>
+        </h2>
+
+        <form className="aboutPage__contactForm" onSubmit={handleSubmit}>
+          <div className="aboutPage__row">
+            <input
+              type="text"
+              placeholder="First Name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+            <input
+              type="text"
+              placeholder="Last Name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="aboutPage__row">
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+           <input
+  type="tel"
+  placeholder="Mobile"
+  value={mobile}
+  onChange={(e) => {
+    // Remove any non-digit characters
+    const val = e.target.value.replace(/\D/g, "");
+    // Limit to 10 digits
+    if (val.length <= 10) setMobile(val);
+  }}
+  required
+/>
+
+          </div>
+
+          <textarea
+            placeholder="Project idea..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            required
+          ></textarea>
+
+          <button
+            className="aboutPage__submit"
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? "Sending..." : "Send"}
+          </button>
+
+          {success === true && (
+            <p className="successMsg">Message sent successfully!</p>
+          )}
+          {success === false && <p className="errorMsg">{errorMsg}</p>}
+        </form>
+      </div>
+    </section>
+
+
+
+
+
+
+
       </main>
     </div>
   );

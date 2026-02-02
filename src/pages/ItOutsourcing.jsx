@@ -34,9 +34,9 @@ export default function ItOutsourcing() {
       productive: "/images/productive.jpeg",
       innovative: "/images/opportunities.jpeg",
       secure: "/images/lock.jpeg",
-      cloud: "/images/cloud.jpg",
+      IT: "/images/IT.png",
       devops: "/images/devops.jpg",
-      security: "/images/security.jpg",
+      security: "/images/unlock.png",
       time: "/images/time.jpeg",
     }),
     []
@@ -184,7 +184,7 @@ export default function ItOutsourcing() {
 
           <div className="io-heroVisual io-reveal">
             <div className="io-heroFrame">
-              <img src={IMG.cloud} alt="IT outsourcing cloud services" />
+              <img src={IMG.IT} alt="IT outsourcing cloud services" />
               <div className="io-heroShade" />
               <div className="io-heroBadge">
                 <FaUnlock />
@@ -390,7 +390,7 @@ export default function ItOutsourcing() {
 
           <div className="io-benefitCtas">
             <a className="io-btn io-btn--primary" href="/contact">Start discussion</a>
-            <a className="io-btn io-btn--ghost" href="/services">See services</a>
+            <a className="io-btn io-btn--ghost" href="/services/cloud/cloud-services">See services</a>
           </div>
         </div>
       </section>

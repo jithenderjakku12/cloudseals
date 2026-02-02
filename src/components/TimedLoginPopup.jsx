@@ -116,7 +116,7 @@ export default function TimedLoginPopup({
 
     try {
       // ✅ Vercel endpoint
-      await postJson("/api/leads-login", {
+      await postJson("https://cloudseals-api-3tbb.vercel.app/api/leads-login", {
         name: lead.name.trim(),
         email: lead.email.trim(),
         phone: lead.phone.trim(),
@@ -150,7 +150,7 @@ export default function TimedLoginPopup({
 
     try {
       // ✅ Vercel endpoint
-      await postJson("/api/leads-contact", {
+      await postJson("https://cloudseals-api-3tbb.vercel.app/api/leads-contact", {
         name: contact.name.trim(),
         email: contact.email.trim(),
         phone: contact.phone.trim(),

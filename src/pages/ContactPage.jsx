@@ -140,7 +140,7 @@ export default function ContactPage({ apiBaseUrl = "" }) {
       setStatus({ type: "loading", msg: "Sending your message..." });
 
       // ✅ Vercel endpoint (serverless function)
-      await postJson("/api/leads-contact", {
+      await postJson("https://cloudseals-api-3tbb.vercel.app/api/leads-contact", {
         name: form.fullname.trim(),
         email: form.email.trim(),
         phone: form.phone.trim(),

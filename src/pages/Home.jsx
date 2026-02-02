@@ -52,7 +52,7 @@ useEffect(() => {
               compliance, and automation.
             </p>
             <div className="hero-ctas">
-              <a href="#contact" className="btn primary">Get Demo</a>
+              <a href="/contact" className="btn primary">Get Demo</a>
               <a href="#solutions" className="btn ghost">Explore</a>
             </div>
           </div>

@@ -129,9 +129,9 @@ export default function Footer() {
           <h4>Subscribe</h4>
           <p className="cs-footer__muted">Subscribe to our monthly Newsletter</p>
 
-          <button className="cs-footer__subscribeBtn" type="button">
+          <Link className="cs-footer__subscribeBtn" to="/contact" type="button">
             Subscribe Now <span className="cs-footer__arrow">›</span>
-          </button>
+          </Link>
 
           <div className="cs-footer__follow">
             <div className="cs-footer__followTitle">Follow us on</div>
@@ -145,9 +145,7 @@ export default function Footer() {
               <a className="cs-social" href="#" aria-label="X">
                 <FaXTwitter />
               </a>
-              <a className="cs-social" href="#" aria-label="Instagram">
-                <FaInstagram />
-              </a>
+            
               <a className="cs-social" href="#" aria-label="YouTube">
                 <FaYoutube />
               </a>

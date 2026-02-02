@@ -85,13 +85,13 @@
 }
 
 /* ============ Hero ============ */
-.csHero{
+.csHero1{
   padding: 110px 0 70px;
   position: relative;
   overflow: hidden;
 }
 
-.csHero::before{
+.csHero1::before{
   content:"";
   position:absolute;
   inset:-2px;

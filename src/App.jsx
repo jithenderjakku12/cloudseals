@@ -19,10 +19,13 @@ import ItOutsourcing from "./pages/ItOutsourcing";
 import QualityAI from "./pages/QualityAI";
 import Insights from "./pages/Insights";
 import SearchResults from "./pages/SearchResults";
+import ScrollToTop from "./pages/ScrollToTop.jsx";
+
 
 export default function App() {
   return (
     <>
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

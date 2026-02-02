@@ -135,7 +135,7 @@ export default function Complisight() {
   return (
     <div className="complisightPage" ref={pageRef}>
       {/* HERO */}
-      <section className="csHero">
+      <section className="csHero1">
         <div className="csContainer csHero__inner">
           <div className="csHero__copy" data-reveal>
             <div className="csPill">
