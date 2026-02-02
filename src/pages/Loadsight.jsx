@@ -440,7 +440,7 @@ export default function Loadsight() {
             <p className="lsSub">
               We can map Loadsight to your camera layout, zones, and workflows — and integrate with YMS/TMS/WMS for measurable outcomes.
             </p>
-            <Link className="lsBtn lsBtn--primary" href="/contact">
+            <Link className="lsBtn lsBtn--primary" to="/contact">
               Talk to us <FaArrowRight aria-hidden="true" />
             </Link>
           </div>
